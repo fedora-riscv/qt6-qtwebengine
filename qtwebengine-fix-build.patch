@@ -1,0 +1,527 @@
+diff --git a/src/3rdparty/chromium/base/debug/profiler.h b/src/3rdparty/chromium/base/debug/profiler.h
+index 1229e0623..c7ed55e70 100644
+--- a/src/3rdparty/chromium/base/debug/profiler.h
++++ b/src/3rdparty/chromium/base/debug/profiler.h
+@@ -5,6 +5,7 @@
+ #ifndef BASE_DEBUG_PROFILER_H_
+ #define BASE_DEBUG_PROFILER_H_
+ 
++#include <cstdint>
+ #include <stddef.h>
+ 
+ #include <string>
+diff --git a/src/3rdparty/chromium/cc/trees/target_property.cc b/src/3rdparty/chromium/cc/trees/target_property.cc
+index 96f8c3bd7..c3f087b1a 100644
+--- a/src/3rdparty/chromium/cc/trees/target_property.cc
++++ b/src/3rdparty/chromium/cc/trees/target_property.cc
+@@ -6,6 +6,8 @@
+ 
+ #include "ui/gfx/animation/keyframe/target_property.h"
+ 
++#include <cstdint>
++
+ namespace cc {
+ 
+ static_assert(TargetProperty::LAST_TARGET_PROPERTY <
+diff --git a/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h b/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
+index 2aba73ebc..2e028fddc 100644
+--- a/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
++++ b/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
+@@ -5,6 +5,7 @@
+ #ifndef COMPONENTS_VIZ_COMMON_SHARED_ELEMENT_RESOURCE_ID_H_
+ #define COMPONENTS_VIZ_COMMON_SHARED_ELEMENT_RESOURCE_ID_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff --git a/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h b/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
+index 3069c858d..f4614b73c 100644
+--- a/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
++++ b/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
+@@ -5,6 +5,7 @@
+ #ifndef CONTENT_PUBLIC_BROWSER_BROWSING_DATA_REMOVER_DELEGATE_H_
+ #define CONTENT_PUBLIC_BROWSER_BROWSING_DATA_REMOVER_DELEGATE_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ #include "base/callback_forward.h"
+diff --git a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
+index 80fd26f4f..dc67a7598 100644
+--- a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
++++ b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
+@@ -6,6 +6,8 @@
+ 
+ #include "base/threading/platform_thread.h"
+ 
++#include <cstdint>
++
+ namespace device {
+ 
+ OneWriterSeqLock::OneWriterSeqLock() : sequence_(0) {}
+diff --git a/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h b/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
+index 3cf2914e1..4b0552440 100644
+--- a/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
++++ b/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
+@@ -5,6 +5,7 @@
+ #ifndef DEVICE_BLUETOOTH_PUBLIC_CPP_BLUETOOTH_UUID_H_
+ #define DEVICE_BLUETOOTH_PUBLIC_CPP_BLUETOOTH_UUID_H_
+ 
++#include <cstdint>
+ #include <ostream>
+ #include <string>
+ #include <vector>
+diff --git a/src/3rdparty/chromium/extensions/common/constants.h b/src/3rdparty/chromium/extensions/common/constants.h
+index 9ac68e2be..ef2761020 100644
+--- a/src/3rdparty/chromium/extensions/common/constants.h
++++ b/src/3rdparty/chromium/extensions/common/constants.h
+@@ -10,6 +10,8 @@
+ #include "build/chromeos_buildflags.h"
+ #include "extensions/common/extensions_export.h"
+ 
++#include <cstdint>
++
+ namespace extensions {
+ 
+ // Scheme we serve extension content from.
+diff --git a/src/3rdparty/chromium/gpu/config/gpu_feature_info.h b/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
+index 027f1a5af..70759b2ae 100644
+--- a/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
++++ b/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
+@@ -5,6 +5,7 @@
+ #ifndef GPU_CONFIG_GPU_FEATURE_INFO_H_
+ #define GPU_CONFIG_GPU_FEATURE_INFO_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff --git a/src/3rdparty/chromium/gpu/config/gpu_util.h b/src/3rdparty/chromium/gpu/config/gpu_util.h
+index f72970c67..d7f0b7d49 100644
+--- a/src/3rdparty/chromium/gpu/config/gpu_util.h
++++ b/src/3rdparty/chromium/gpu/config/gpu_util.h
+@@ -5,6 +5,8 @@
+ #ifndef GPU_CONFIG_GPU_UTIL_H_
+ #define GPU_CONFIG_GPU_UTIL_H_
+ 
++#include <cstdint>
++
+ #include "build/build_config.h"
+ #include "gpu/config/gpu_feature_info.h"
+ #include "gpu/gpu_export.h"
+diff --git a/src/3rdparty/chromium/net/base/parse_number.h b/src/3rdparty/chromium/net/base/parse_number.h
+index 4e49ab711..328045be6 100644
+--- a/src/3rdparty/chromium/net/base/parse_number.h
++++ b/src/3rdparty/chromium/net/base/parse_number.h
+@@ -8,6 +8,8 @@
+ #include "base/strings/string_piece.h"
+ #include "net/base/net_export.h"
+ 
++#include <cstdint>
++
+ // This file contains utility functions for parsing numbers, in the context of
+ // network protocols.
+ //
+diff --git a/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h b/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
+index 2e9c319a3..4d723d18f 100644
+--- a/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
++++ b/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
+@@ -6,6 +6,7 @@
+ #define NET_COOKIES_COOKIE_INCLUSION_STATUS_H_
+ 
+ #include <bitset>
++#include <cstdint>
+ #include <ostream>
+ #include <string>
+ #include <vector>
+diff --git a/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h b/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h
+index 6a300ed0c..3e30f1cb0 100644
+--- a/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h
++++ b/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/crypto/quic_hkdf.h
+@@ -5,6 +5,7 @@
+ #ifndef QUICHE_QUIC_CORE_CRYPTO_QUIC_HKDF_H_
+ #define QUICHE_QUIC_CORE_CRYPTO_QUIC_HKDF_H_
+ 
++#include <cstdint>
+ #include <vector>
+ 
+ #include "absl/strings/string_view.h"
+diff --git a/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h b/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h
+index 52f150172..db4d31084 100644
+--- a/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h
++++ b/src/3rdparty/chromium/net/third_party/quiche/src/quiche/quic/core/quic_connection_id.h
+@@ -5,6 +5,7 @@
+ #ifndef QUICHE_QUIC_CORE_QUIC_CONNECTION_ID_H_
+ #define QUICHE_QUIC_CORE_QUIC_CONNECTION_ID_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff --git a/src/3rdparty/chromium/pdf/document_attachment_info.h b/src/3rdparty/chromium/pdf/document_attachment_info.h
+index 138ca2efe..08f06e7b8 100644
+--- a/src/3rdparty/chromium/pdf/document_attachment_info.h
++++ b/src/3rdparty/chromium/pdf/document_attachment_info.h
+@@ -5,6 +5,7 @@
+ #ifndef PDF_DOCUMENT_ATTACHMENT_INFO_H_
+ #define PDF_DOCUMENT_ATTACHMENT_INFO_H_
+ 
++#include <cstdint>
+ #include <string>
+ 
+ 
+diff --git a/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h b/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
+index b4fdb9a6d..375d3ef32 100644
+--- a/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
++++ b/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
+@@ -38,6 +38,10 @@ namespace pp {
+ /// As a further optimization, we can add support for this later.
+ class ThreadSafeThreadTraits {
+  public:
++
++  typedef pp::Lock Lock;
++  typedef pp::AutoLock AutoLock;
++
+   class RefCount {
+    public:
+     /// Default constructor. In debug mode, this checks that the object is being
+@@ -67,8 +71,6 @@ class ThreadSafeThreadTraits {
+     int32_t ref_;
+   };
+ 
+-  typedef pp::Lock Lock;
+-  typedef pp::AutoLock AutoLock;
+ };
+ 
+ /// The non-thread-safe version of thread traits. Using this class as the
+diff --git a/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h b/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h
+index 0aad3ac78..3571b8a0f 100644
+--- a/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h
++++ b/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h
+@@ -6,6 +6,7 @@
+ #define SANDBOX_LINUX_SYSCALL_BROKER_BROKER_FILE_PERMISSION_H_
+ 
+ #include <bitset>
++#include <cstdint>
+ #include <string>
+ 
+ #include "sandbox/sandbox_export.h"
+diff --git a/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h b/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
+index c47536d63..55e8ac882 100644
+--- a/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
++++ b/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
+@@ -19,6 +19,7 @@
+ #include <limits.h>
+ 
+ #include <cstddef>
++#include <cstdint>
+ #include <cstring>
+ #include <ostream>
+ 
+diff --git a/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h b/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
+index 18175e15c..9edfd8f6a 100644
+--- a/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
++++ b/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
+@@ -12,6 +12,7 @@
+ 
+ #include <algorithm>
+ #include <array>
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff --git a/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h b/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
+index 80b3150b6..637719623 100644
+--- a/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
++++ b/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
+@@ -116,7 +116,7 @@ class PLATFORM_EXPORT EffectPaintPropertyNode
+ 
+     // An identifier for a document transition shared element. `id.valid()`
+     // returns true if this has been set, and false otherwise.
+-    DocumentTransitionSharedElementId document_transition_shared_element_id;
++    cc::DocumentTransitionSharedElementId document_transition_shared_element_id;
+ 
+     // An identifier to tag shared element resources generated and cached in the
+     // Viz process. This generated resource can be used as content for other
+@@ -285,7 +285,7 @@ class PLATFORM_EXPORT EffectPaintPropertyNode
+     return state_.compositor_element_id;
+   }
+ 
+-  const blink::DocumentTransitionSharedElementId&
++  const cc::DocumentTransitionSharedElementId&
+   DocumentTransitionSharedElementId() const {
+     return state_.document_transition_shared_element_id;
+   }
+diff --git a/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h b/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
+index c7e4f2b37..e491a1f68 100644
+--- a/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
++++ b/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
+@@ -33,6 +33,7 @@
+ #include <assert.h>
+ #include <sys/types.h>
+ 
++#include <cstdint>
+ #include <string>
+ 
+ #include "client/linux/handler/microdump_extra_info.h"
+diff --git a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h b/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
+index 2d58d76cb..a0e021691 100644
+--- a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
++++ b/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
+@@ -19,6 +19,7 @@
+ #include "dawn/common/ityp_array.h"
+ 
+ #include <bitset>
++#include <cstdint>
+ #include <iostream>
+ #include <limits>
+ #include <string>
+diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
+index 374bd8302..0884eb2a1 100644
+--- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
++++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_READER_SPIRV_ENTRY_POINT_INFO_H_
+ #define SRC_TINT_READER_SPIRV_ENTRY_POINT_INFO_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
+index fa5fc3a7e..6cec93467 100644
+--- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
++++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_READER_SPIRV_NAMER_H_
+ #define SRC_TINT_READER_SPIRV_NAMER_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <unordered_map>
+ #include <vector>
+diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
+index f378d5781..98d1336f9 100644
+--- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
++++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_READER_WGSL_LEXER_H_
+ #define SRC_TINT_READER_WGSL_LEXER_H_
+ 
++#include <cstdint>
+ #include <string>
+ 
+ #include "src/tint/reader/wgsl/token.h"
+diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
+index 7b5b6754e..62b1ca7e3 100644
+--- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
++++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_READER_WGSL_TOKEN_H_
+ #define SRC_TINT_READER_WGSL_TOKEN_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <string_view>
+ #include <variant>  // NOLINT: cpplint doesn't recognise this
+diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h b/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
+index 46a5deb55..4c3080ff2 100644
+--- a/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
++++ b/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
+@@ -15,6 +15,7 @@
+ #ifndef SRC_TINT_WRITER_SPIRV_OPERAND_H_
+ #define SRC_TINT_WRITER_SPIRV_OPERAND_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff --git a/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc b/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
+index a3099e15d..2e6f0eea7 100644
+--- a/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
++++ b/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
+@@ -30,6 +30,7 @@
+ #include <cstddef>
+ #include <cstdint>
+ #include <cstring>
++#include <cstdio>
+ #include <new>
+ #include <utility>
+ 
+diff --git a/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h b/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h
+index d2731dac7..46bc87ef9 100644
+--- a/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h
++++ b/src/3rdparty/chromium/third_party/pdfium/constants/annotation_flags.h
+@@ -5,6 +5,8 @@
+ #ifndef CONSTANTS_ANNOTATION_FLAGS_H_
+ #define CONSTANTS_ANNOTATION_FLAGS_H_
+ 
++#include <cstdint>
++
+ namespace pdfium {
+ namespace annotation_flags {
+ 
+diff --git a/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h b/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
+index 1b4c53815..472042fab 100644
+--- a/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
++++ b/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/base/uuid.h
+@@ -18,6 +18,7 @@
+ #define INCLUDE_PERFETTO_EXT_BASE_UUID_H_
+ 
+ #include <array>
++#include <cstdint>
+ #include <string>
+ 
+ #include "perfetto/ext/base/optional.h"
+diff --git a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
+index c56f0344f..cd7824929 100644
+--- a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
++++ b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
+@@ -20,6 +20,8 @@
+ #include "perfetto/ext/base/optional.h"
+ #include "perfetto/trace_processor/status.h"
+ 
++#include <cstdint>
++
+ namespace perfetto {
+ 
+ namespace protos {
+diff --git a/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp b/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
+index 316465072..512a26943 100644
+--- a/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
++++ b/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
+@@ -10,6 +10,10 @@
+ 
+ #include <algorithm> // std::lower_bound
+ 
++#include <string.h>
++#include <algorithm>
++#include <iterator>
++
+ static constexpr const char* gColorNames[] = {
+     "aliceblue",
+     "antiquewhite",
+diff --git a/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h b/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
+index b7c586b80..d950214c3 100644
+--- a/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
++++ b/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
+@@ -105,6 +105,8 @@ Documentation of all members: vk_mem_alloc.h
+ - [Source repository on GitHub](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator)
+ */
+ 
++#include <cstdio>
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h b/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
+index b70ac4aa5..7ba555564 100644
+--- a/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
++++ b/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
+@@ -13,6 +13,7 @@
+ 
+ #include <gio/gio.h>
+ 
++#include <cstdint>
+ #include <string>
+ 
+ namespace webrtc {
+diff --git a/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h b/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
+index ca249541d..534214dbf 100644
+--- a/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
++++ b/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
+@@ -12,6 +12,7 @@
+ #ifndef RTC_BASE_THIRD_PARTY_BASE64_BASE64_H_
+ #define RTC_BASE_THIRD_PARTY_BASE64_BASE64_H_
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+diff --git a/src/3rdparty/chromium/ui/events/gesture_event_details.h b/src/3rdparty/chromium/ui/events/gesture_event_details.h
+index d97a696fd..68b18d80c 100644
+--- a/src/3rdparty/chromium/ui/events/gesture_event_details.h
++++ b/src/3rdparty/chromium/ui/events/gesture_event_details.h
+@@ -5,6 +5,7 @@
+ #ifndef UI_EVENTS_GESTURE_EVENT_DETAILS_H_
+ #define UI_EVENTS_GESTURE_EVENT_DETAILS_H_
+ 
++#include <cstdint>
+ #include <string.h>
+ 
+ #include "base/check_op.h"
+diff --git a/src/3rdparty/chromium/ui/events/types/scroll_types.h b/src/3rdparty/chromium/ui/events/types/scroll_types.h
+index 7ff15f0fc..136cebc09 100644
+--- a/src/3rdparty/chromium/ui/events/types/scroll_types.h
++++ b/src/3rdparty/chromium/ui/events/types/scroll_types.h
+@@ -5,6 +5,8 @@
+ #ifndef UI_EVENTS_TYPES_SCROLL_TYPES_H_
+ #define UI_EVENTS_TYPES_SCROLL_TYPES_H_
+ 
++#include <cstdint>
++
+ namespace ui {
+ 
+ enum class ScrollGranularity : uint8_t {
+diff --git a/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h b/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
+index 1ad025fec..adadf9619 100644
+--- a/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
++++ b/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
+@@ -5,6 +5,7 @@
+ #ifndef UI_GFX_LINEAR_GRADIENT_H_
+ #define UI_GFX_LINEAR_GRADIENT_H_
+ 
++#include <cstdint>
+ #include <array>
+ #include <string>
+ 
+diff --git a/src/3rdparty/chromium/v8/src/base/logging.h b/src/3rdparty/chromium/v8/src/base/logging.h
+index fdac44e31..a752dba6a 100644
+--- a/src/3rdparty/chromium/v8/src/base/logging.h
++++ b/src/3rdparty/chromium/v8/src/base/logging.h
+@@ -5,6 +5,7 @@
+ #ifndef V8_BASE_LOGGING_H_
+ #define V8_BASE_LOGGING_H_
+ 
++#include <cstdint>
+ #include <cstring>
+ #include <sstream>
+ #include <string>
+diff --git a/src/3rdparty/chromium/v8/src/base/macros.h b/src/3rdparty/chromium/v8/src/base/macros.h
+index 61644ffe0..6fbc03743 100644
+--- a/src/3rdparty/chromium/v8/src/base/macros.h
++++ b/src/3rdparty/chromium/v8/src/base/macros.h
+@@ -5,6 +5,7 @@
+ #ifndef V8_BASE_MACROS_H_
+ #define V8_BASE_MACROS_H_
+ 
++#include <cstdint>
+ #include <limits>
+ #include <type_traits>
+ 
+diff --git a/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h b/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
+index c1d69c18f..eb33c6816 100644
+--- a/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
++++ b/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
+@@ -5,6 +5,7 @@
+ #ifndef V8_INSPECTOR_V8_STRING_CONVERSIONS_H_
+ #define V8_INSPECTOR_V8_STRING_CONVERSIONS_H_
+ 
++#include <cstdint>
+ #include <string>
+ 
+ // Conversion routines between UT8 and UTF16, used by string-16.{h,cc}. You may
+diff --git a/src/core/browsing_data_remover_delegate_qt.h b/src/core/browsing_data_remover_delegate_qt.h
+index 4e690ffb1..dfa884cd6 100644
+--- a/src/core/browsing_data_remover_delegate_qt.h
++++ b/src/core/browsing_data_remover_delegate_qt.h
+@@ -6,6 +6,8 @@
+ 
+ #include "content/public/browser/browsing_data_remover_delegate.h"
+ 
++#include <cstdint>
++
+ namespace QtWebEngineCore {
+ 
+ class BrowsingDataRemoverDelegateQt : public content::BrowsingDataRemoverDelegate {
