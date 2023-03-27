@@ -43,13 +43,8 @@
 
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
-<<<<<<< HEAD
-Version: 6.4.2
-Release: 4%{?dist}
-=======
 Version: 6.4.3
 Release: 1%{?dist}
->>>>>>> rawhide
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
