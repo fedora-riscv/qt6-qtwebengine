@@ -599,9 +599,6 @@ done
 
 
 %changelog
-* Sun Mar 12 2023 Neal Gompa <ngompa@fedoraproject.org> - 6.4.2-4
-- Rebuild for ffmpeg 6.0
-
 * Fri Mar 24 2023 Jan Grulich <jgrulich@redhat.com> - 6.4.3-1
 - 6.4.3
 
