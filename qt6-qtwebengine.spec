@@ -43,8 +43,13 @@
 
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
+<<<<<<< HEAD
 Version: 6.4.2
 Release: 4%{?dist}
+=======
+Version: 6.4.3
+Release: 1%{?dist}
+>>>>>>> rawhide
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -71,6 +76,7 @@ Patch1:  qtwebengine-SIOCGSTAMP.patch
 Patch2:  qtwebengine-link-pipewire.patch
 # Fix/workaround FTBFS on aarch64 with newer glibc
 Patch3: qtwebengine-aarch64-new-stat.patch
+Patch4: qtwebengine-ffmpeg-first_dts.patch
 
 # FTBS warning: elaborated-type-specifier for a scoped enum must not
 # use the 'class' keyword
@@ -331,8 +337,8 @@ popd
 
 %patch1 -p1 -b .SIOCGSTAMP
 %patch2 -p1 -b .link-pipewire
-
 %patch3 -p1 -b .aarch64-new-stat
+%patch4 -p1 -b .qtwebengine-ffmpeg-first_dts
 
 %patch50 -p1 -b .fix-build.patch
 
@@ -601,11 +607,18 @@ done
 * Sun Mar 12 2023 Neal Gompa <ngompa@fedoraproject.org> - 6.4.2-4
 - Rebuild for ffmpeg 6.0
 
-* Sun Feb 26 2023 Marek Kasik <mkasik@redhat.com> - 6.4.2-3
+* Fri Mar 24 2023 Jan Grulich <jgrulich@redhat.com> - 6.4.3-1
+- 6.4.3
+
+* Sun Mar 12 2023 Neal Gompa <ngompa@fedoraproject.org> - 6.4.2-4
+- Rebuild for ffmpeg 6.0
+
+* Sat Feb 25 2023 Marek Kasik <mkasik@redhat.com> - 6.4.2-3
 - Rebuild for freetype-2.13.0
 
 * Wed Feb 15 2023 Tom Callaway <spot@fedoraproject.org> - 6.4.2-2
 - rebuild for libvpx
 
-* Mon Jan 16 2023 Jan Grulich <jgrulich@redhat.com> - 6.4.2
+* Mon Jan 16 2023 Jan Grulich <jgrulich@redhat.com> - 6.4.2-1
+
 - Initial package
