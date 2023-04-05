@@ -1,5 +1,5 @@
 diff --git a/src/3rdparty/chromium/base/debug/profiler.h b/src/3rdparty/chromium/base/debug/profiler.h
-index 1229e0623..c7ed55e70 100644
+index 5f0deadd5..803de8f2b 100644
 --- a/src/3rdparty/chromium/base/debug/profiler.h
 +++ b/src/3rdparty/chromium/base/debug/profiler.h
 @@ -5,6 +5,7 @@
@@ -11,7 +11,7 @@ index 1229e0623..c7ed55e70 100644
  
  #include <string>
 diff --git a/src/3rdparty/chromium/cc/trees/target_property.cc b/src/3rdparty/chromium/cc/trees/target_property.cc
-index 96f8c3bd7..c3f087b1a 100644
+index f6e873a01..5f952c5ed 100644
 --- a/src/3rdparty/chromium/cc/trees/target_property.cc
 +++ b/src/3rdparty/chromium/cc/trees/target_property.cc
 @@ -6,6 +6,8 @@
@@ -24,7 +24,7 @@ index 96f8c3bd7..c3f087b1a 100644
  
  static_assert(TargetProperty::LAST_TARGET_PROPERTY <
 diff --git a/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h b/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
-index 2aba73ebc..2e028fddc 100644
+index b39a2d3dc..ca3d8aeda 100644
 --- a/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
 +++ b/src/3rdparty/chromium/components/viz/common/shared_element_resource_id.h
 @@ -5,6 +5,7 @@
@@ -36,7 +36,7 @@ index 2aba73ebc..2e028fddc 100644
  #include <vector>
  
 diff --git a/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h b/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
-index 3069c858d..f4614b73c 100644
+index ee75332f0..c0168281e 100644
 --- a/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
 +++ b/src/3rdparty/chromium/content/public/browser/browsing_data_remover_delegate.h
 @@ -5,6 +5,7 @@
@@ -48,7 +48,7 @@ index 3069c858d..f4614b73c 100644
  #include <vector>
  #include "base/callback_forward.h"
 diff --git a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
-index 80fd26f4f..dc67a7598 100644
+index c62a00ee0..af54520b7 100644
 --- a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 +++ b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 @@ -6,6 +6,8 @@
@@ -60,8 +60,20 @@ index 80fd26f4f..dc67a7598 100644
  namespace device {
  
  OneWriterSeqLock::OneWriterSeqLock() : sequence_(0) {}
+diff --git a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h
+index 528b6683c..e37a16b81 100644
+--- a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h
++++ b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.h
+@@ -6,6 +6,7 @@
+ #define DEVICE_BASE_SYNCHRONIZATION_ONE_WRITER_SEQLOCK_H_
+ 
+ #include <atomic>
++#include <cstdint>
+ #include <type_traits>
+ 
+ #include "base/atomicops.h"
 diff --git a/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h b/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
-index 3cf2914e1..4b0552440 100644
+index 816d3405e..15c4004c0 100644
 --- a/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
 +++ b/src/3rdparty/chromium/device/bluetooth/public/cpp/bluetooth_uuid.h
 @@ -5,6 +5,7 @@
@@ -73,7 +85,7 @@ index 3cf2914e1..4b0552440 100644
  #include <string>
  #include <vector>
 diff --git a/src/3rdparty/chromium/extensions/common/constants.h b/src/3rdparty/chromium/extensions/common/constants.h
-index 9ac68e2be..ef2761020 100644
+index bf6bac2b4..51c534509 100644
 --- a/src/3rdparty/chromium/extensions/common/constants.h
 +++ b/src/3rdparty/chromium/extensions/common/constants.h
 @@ -10,6 +10,8 @@
@@ -86,7 +98,7 @@ index 9ac68e2be..ef2761020 100644
  
  // Scheme we serve extension content from.
 diff --git a/src/3rdparty/chromium/gpu/config/gpu_feature_info.h b/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
-index 027f1a5af..70759b2ae 100644
+index 1a7028e47..b9e951c0a 100644
 --- a/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
 +++ b/src/3rdparty/chromium/gpu/config/gpu_feature_info.h
 @@ -5,6 +5,7 @@
@@ -98,7 +110,7 @@ index 027f1a5af..70759b2ae 100644
  #include <vector>
  
 diff --git a/src/3rdparty/chromium/gpu/config/gpu_util.h b/src/3rdparty/chromium/gpu/config/gpu_util.h
-index f72970c67..d7f0b7d49 100644
+index 574aca1ff..fca32671c 100644
 --- a/src/3rdparty/chromium/gpu/config/gpu_util.h
 +++ b/src/3rdparty/chromium/gpu/config/gpu_util.h
 @@ -5,6 +5,8 @@
@@ -111,7 +123,7 @@ index f72970c67..d7f0b7d49 100644
  #include "gpu/config/gpu_feature_info.h"
  #include "gpu/gpu_export.h"
 diff --git a/src/3rdparty/chromium/net/base/parse_number.h b/src/3rdparty/chromium/net/base/parse_number.h
-index 4e49ab711..328045be6 100644
+index d6adf388e..560e692aa 100644
 --- a/src/3rdparty/chromium/net/base/parse_number.h
 +++ b/src/3rdparty/chromium/net/base/parse_number.h
 @@ -8,6 +8,8 @@
@@ -124,7 +136,7 @@ index 4e49ab711..328045be6 100644
  // network protocols.
  //
 diff --git a/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h b/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
-index 2e9c319a3..4d723d18f 100644
+index 5f289ddcd..44f2f9eb1 100644
 --- a/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
 +++ b/src/3rdparty/chromium/net/cookies/cookie_inclusion_status.h
 @@ -6,6 +6,7 @@
@@ -160,7 +172,7 @@ index 52f150172..db4d31084 100644
  #include <vector>
  
 diff --git a/src/3rdparty/chromium/pdf/document_attachment_info.h b/src/3rdparty/chromium/pdf/document_attachment_info.h
-index 138ca2efe..08f06e7b8 100644
+index e0fffc2ca..095463fcb 100644
 --- a/src/3rdparty/chromium/pdf/document_attachment_info.h
 +++ b/src/3rdparty/chromium/pdf/document_attachment_info.h
 @@ -5,6 +5,7 @@
@@ -172,7 +184,7 @@ index 138ca2efe..08f06e7b8 100644
  
  
 diff --git a/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h b/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
-index b4fdb9a6d..375d3ef32 100644
+index 7c0dcdecb..97054d476 100644
 --- a/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
 +++ b/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
 @@ -38,6 +38,10 @@ namespace pp {
@@ -196,7 +208,7 @@ index b4fdb9a6d..375d3ef32 100644
  
  /// The non-thread-safe version of thread traits. Using this class as the
 diff --git a/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h b/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h
-index 0aad3ac78..3571b8a0f 100644
+index b167ffb09..2347d5461 100644
 --- a/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h
 +++ b/src/3rdparty/chromium/sandbox/linux/syscall_broker/broker_file_permission.h
 @@ -6,6 +6,7 @@
@@ -207,20 +219,8 @@ index 0aad3ac78..3571b8a0f 100644
  #include <string>
  
  #include "sandbox/sandbox_export.h"
-diff --git a/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h b/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
-index c47536d63..55e8ac882 100644
---- a/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
-+++ b/src/3rdparty/chromium/third_party/abseil-cpp/absl/strings/internal/str_format/extension.h
-@@ -19,6 +19,7 @@
- #include <limits.h>
- 
- #include <cstddef>
-+#include <cstdint>
- #include <cstring>
- #include <ostream>
- 
 diff --git a/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h b/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
-index 18175e15c..9edfd8f6a 100644
+index 4b76d33af..4db1902d1 100644
 --- a/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
 +++ b/src/3rdparty/chromium/third_party/angle/include/GLSLANG/ShaderVars.h
 @@ -12,6 +12,7 @@
@@ -231,11 +231,23 @@ index 18175e15c..9edfd8f6a 100644
  #include <string>
  #include <vector>
  
+diff --git a/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h b/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h
+index c1b5f59f5..246200991 100644
+--- a/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h
++++ b/src/3rdparty/chromium/third_party/blink/public/common/origin_trials/origin_trial_public_key.h
+@@ -6,6 +6,7 @@
+ #define THIRD_PARTY_BLINK_PUBLIC_COMMON_ORIGIN_TRIALS_ORIGIN_TRIAL_PUBLIC_KEY_H_
+ 
+ #include <array>
++#include <cstdint>
+ 
+ namespace blink {
+ 
 diff --git a/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h b/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
-index 80b3150b6..637719623 100644
+index e40a76207..bf5ef7f13 100644
 --- a/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
 +++ b/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
-@@ -116,7 +116,7 @@ class PLATFORM_EXPORT EffectPaintPropertyNode
+@@ -122,7 +122,7 @@ class PLATFORM_EXPORT EffectPaintPropertyNode
  
      // An identifier for a document transition shared element. `id.valid()`
      // returns true if this has been set, and false otherwise.
@@ -244,7 +256,7 @@ index 80b3150b6..637719623 100644
  
      // An identifier to tag shared element resources generated and cached in the
      // Viz process. This generated resource can be used as content for other
-@@ -285,7 +285,7 @@ class PLATFORM_EXPORT EffectPaintPropertyNode
+@@ -291,7 +291,7 @@ class PLATFORM_EXPORT EffectPaintPropertyNode
      return state_.compositor_element_id;
    }
  
@@ -266,19 +278,19 @@ index c7e4f2b37..e491a1f68 100644
  
  #include "client/linux/handler/microdump_extra_info.h"
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h b/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
-index 2d58d76cb..a0e021691 100644
+index 6cec3b6b8..541bba5b1 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
 +++ b/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
-@@ -19,6 +19,7 @@
- #include "dawn/common/ityp_array.h"
+@@ -15,6 +15,7 @@
+ #ifndef SRC_DAWN_NATIVE_CACHEKEY_H_
+ #define SRC_DAWN_NATIVE_CACHEKEY_H_
  
- #include <bitset>
 +#include <cstdint>
- #include <iostream>
- #include <limits>
- #include <string>
+ #include <utility>
+ 
+ #include "dawn/native/stream/ByteVectorSink.h"
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
-index 374bd8302..0884eb2a1 100644
+index 90077421d..f303f9e8b 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
 +++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
 @@ -15,6 +15,7 @@
@@ -287,10 +299,10 @@ index 374bd8302..0884eb2a1 100644
  
 +#include <cstdint>
  #include <string>
- #include <vector>
  
+ #include "src/tint/ast/pipeline_stage.h"
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
-index fa5fc3a7e..6cec93467 100644
+index 7a20e8738..655f69ce3 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
 +++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
 @@ -15,6 +15,7 @@
@@ -302,7 +314,7 @@ index fa5fc3a7e..6cec93467 100644
  #include <unordered_map>
  #include <vector>
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
-index f378d5781..98d1336f9 100644
+index 8e0306b6a..0fc0cc2b0 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
 +++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
 @@ -15,6 +15,7 @@
@@ -311,10 +323,10 @@ index f378d5781..98d1336f9 100644
  
 +#include <cstdint>
  #include <string>
+ #include <vector>
  
- #include "src/tint/reader/wgsl/token.h"
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
-index 7b5b6754e..62b1ca7e3 100644
+index 4cf9aad1b..3fa13e216 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
 +++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
 @@ -15,6 +15,7 @@
@@ -324,9 +336,9 @@ index 7b5b6754e..62b1ca7e3 100644
 +#include <cstdint>
  #include <string>
  #include <string_view>
- #include <variant>  // NOLINT: cpplint doesn't recognise this
+ #include <variant>
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h b/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
-index 46a5deb55..4c3080ff2 100644
+index 0601ca068..ac9dde64e 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
 +++ b/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
 @@ -15,6 +15,7 @@
@@ -334,9 +346,9 @@ index 46a5deb55..4c3080ff2 100644
  #define SRC_TINT_WRITER_SPIRV_OPERAND_H_
  
 +#include <cstdint>
+ #include <cstring>
  #include <string>
- #include <vector>
- 
+ #include <variant>
 diff --git a/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc b/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
 index a3099e15d..2e6f0eea7 100644
 --- a/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
@@ -375,12 +387,12 @@ index 1b4c53815..472042fab 100644
  
  #include "perfetto/ext/base/optional.h"
 diff --git a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
-index c56f0344f..cd7824929 100644
+index d047de1bf..d7fc91a59 100644
 --- a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
 +++ b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
-@@ -20,6 +20,8 @@
- #include "perfetto/ext/base/optional.h"
+@@ -21,6 +21,8 @@
  #include "perfetto/trace_processor/status.h"
+ #include "src/trace_processor/importers/common/trace_parser.h"
  
 +#include <cstdint>
 +
@@ -388,12 +400,12 @@ index c56f0344f..cd7824929 100644
  
  namespace protos {
 diff --git a/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp b/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
-index 316465072..512a26943 100644
+index 0101632c5..3f04a2dd2 100644
 --- a/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
 +++ b/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
-@@ -10,6 +10,10 @@
- 
- #include <algorithm> // std::lower_bound
+@@ -15,6 +15,10 @@
+ #include <iterator>
+ #include <string>
  
 +#include <string.h>
 +#include <algorithm>
@@ -428,7 +440,7 @@ index b70ac4aa5..7ba555564 100644
  
  namespace webrtc {
 diff --git a/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h b/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
-index ca249541d..534214dbf 100644
+index 4190a79dc..5a9285f00 100644
 --- a/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
 +++ b/src/3rdparty/chromium/third_party/webrtc/rtc_base/third_party/base64/base64.h
 @@ -12,6 +12,7 @@
@@ -440,7 +452,7 @@ index ca249541d..534214dbf 100644
  #include <vector>
  
 diff --git a/src/3rdparty/chromium/ui/events/gesture_event_details.h b/src/3rdparty/chromium/ui/events/gesture_event_details.h
-index d97a696fd..68b18d80c 100644
+index 41ff9906d..1864e9e21 100644
 --- a/src/3rdparty/chromium/ui/events/gesture_event_details.h
 +++ b/src/3rdparty/chromium/ui/events/gesture_event_details.h
 @@ -5,6 +5,7 @@
@@ -452,7 +464,7 @@ index d97a696fd..68b18d80c 100644
  
  #include "base/check_op.h"
 diff --git a/src/3rdparty/chromium/ui/events/types/scroll_types.h b/src/3rdparty/chromium/ui/events/types/scroll_types.h
-index 7ff15f0fc..136cebc09 100644
+index be6b2779f..dbe2e5cf7 100644
 --- a/src/3rdparty/chromium/ui/events/types/scroll_types.h
 +++ b/src/3rdparty/chromium/ui/events/types/scroll_types.h
 @@ -5,6 +5,8 @@
@@ -465,7 +477,7 @@ index 7ff15f0fc..136cebc09 100644
  
  enum class ScrollGranularity : uint8_t {
 diff --git a/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h b/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
-index 1ad025fec..adadf9619 100644
+index 65cd4cb07..210c4318e 100644
 --- a/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
 +++ b/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
 @@ -5,6 +5,7 @@
@@ -476,20 +488,8 @@ index 1ad025fec..adadf9619 100644
  #include <array>
  #include <string>
  
-diff --git a/src/3rdparty/chromium/v8/src/base/logging.h b/src/3rdparty/chromium/v8/src/base/logging.h
-index fdac44e31..a752dba6a 100644
---- a/src/3rdparty/chromium/v8/src/base/logging.h
-+++ b/src/3rdparty/chromium/v8/src/base/logging.h
-@@ -5,6 +5,7 @@
- #ifndef V8_BASE_LOGGING_H_
- #define V8_BASE_LOGGING_H_
- 
-+#include <cstdint>
- #include <cstring>
- #include <sstream>
- #include <string>
 diff --git a/src/3rdparty/chromium/v8/src/base/macros.h b/src/3rdparty/chromium/v8/src/base/macros.h
-index 61644ffe0..6fbc03743 100644
+index cd5b91f74..a74c0021f 100644
 --- a/src/3rdparty/chromium/v8/src/base/macros.h
 +++ b/src/3rdparty/chromium/v8/src/base/macros.h
 @@ -5,6 +5,7 @@
@@ -500,18 +500,6 @@ index 61644ffe0..6fbc03743 100644
  #include <limits>
  #include <type_traits>
  
-diff --git a/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h b/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
-index c1d69c18f..eb33c6816 100644
---- a/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
-+++ b/src/3rdparty/chromium/v8/src/inspector/v8-string-conversions.h
-@@ -5,6 +5,7 @@
- #ifndef V8_INSPECTOR_V8_STRING_CONVERSIONS_H_
- #define V8_INSPECTOR_V8_STRING_CONVERSIONS_H_
- 
-+#include <cstdint>
- #include <string>
- 
- // Conversion routines between UT8 and UTF16, used by string-16.{h,cc}. You may
 diff --git a/src/core/browsing_data_remover_delegate_qt.h b/src/core/browsing_data_remover_delegate_qt.h
 index 4e690ffb1..dfa884cd6 100644
 --- a/src/core/browsing_data_remover_delegate_qt.h
