@@ -9,11 +9,12 @@
 %global use_system_jsoncpp 1
 %if 0%{?rhel} && 0%{?rhel} == 9
 %global use_system_re2 0
+%global use_system_libicu 0
 %else
 %global use_system_re2 1
+%global use_system_libicu 1
 %endif
 
-%global use_system_libicu 1
 
 # NEON support on ARM (detected at runtime) - disable this if you are hitting
 # FTBFS due to e.g. GCC bug https://bugzilla.redhat.com/show_bug.cgi?id=1282495
