@@ -92,6 +92,9 @@ ExclusiveArch: aarch64 x86_64
 
 BuildRequires: cmake
 BuildRequires: make
+%if 0%{?rhel} && 0%{?rhel} < 10
+BuildRequires: gcc-toolset-12
+%endif
 BuildRequires: qt6-srpm-macros
 BuildRequires: qt6-qtbase-devel
 BuildRequires: qt6-qtbase-private-devel
@@ -370,6 +373,9 @@ test -f "./include/QtWebEngineCore/qtwebenginecoreglobal.h"
 
 
 %build
+%if 0%{?rhel} && 0%{?rhel} < 10
+. /opt/rh/gcc-toolset-12/enable
+%endif
 export STRIP=strip
 export NINJAFLAGS="%{__ninja_common_opts}"
 export NINJA_PATH=%{__ninja}
@@ -467,6 +473,7 @@ done
 %{_qt6_plugindir}/designer/libqwebengineview.so
 %{_qt6_plugindir}/imageformats/libqpdf.so
 %dir %{_qt6_datadir}/resources/
+%{_qt6_datadir}/resources/icudtl.dat
 %{_qt6_datadir}/resources/qtwebengine_resources.pak
 %{_qt6_datadir}/resources/qtwebengine_resources_100p.pak
 %{_qt6_datadir}/resources/qtwebengine_resources_200p.pak
