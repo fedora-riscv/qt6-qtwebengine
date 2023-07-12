@@ -8,12 +8,12 @@
 %global use_system_libwebp 1
 %global use_system_jsoncpp 1
 %if 0%{?rhel} && 0%{?rhel} == 9
-%global use_system_re2 0
+%global use_system_libicu 0
 %else
-%global use_system_re2 1
+%global use_system_libicu 1
 %endif
 
-%global use_system_libicu 1
+%global use_system_re2 1
 
 # NEON support on ARM (detected at runtime) - disable this if you are hitting
 # FTBFS due to e.g. GCC bug https://bugzilla.redhat.com/show_bug.cgi?id=1282495
@@ -44,7 +44,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.5.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -109,13 +109,16 @@ BuildRequires: cmake
 BuildRequires: bison
 BuildRequires: flex
 BuildRequires: gcc-c++
+%if 0%{?rhel} && 0%{?rhel} < 10
+BuildRequires: gcc-toolset-12
+%endif
 # gn links statically (for now)
 BuildRequires: libstdc++-static
 BuildRequires: git-core
 BuildRequires: gperf
 BuildRequires: krb5-devel
 %if 0%{?use_system_libicu}
-BuildRequires: libicu-devel >= 65
+BuildRequires: libicu-devel >= 68
 %endif
 BuildRequires: libjpeg-devel
 BuildRequires: nodejs
@@ -369,6 +372,9 @@ cp -p src/3rdparty/chromium/LICENSE LICENSE.Chromium
 
 
 %build
+%if 0%{?rhel} && 0%{?rhel} < 10
+. /opt/rh/gcc-toolset-12/enable
+%endif
 export STRIP=strip
 export NINJAFLAGS="%{__ninja_common_opts}"
 export NINJA_PATH=%{__ninja}
@@ -469,6 +475,9 @@ done
 %{_qt6_datadir}/resources/qtwebengine_resources.pak
 %{_qt6_datadir}/resources/qtwebengine_resources_100p.pak
 %{_qt6_datadir}/resources/qtwebengine_resources_200p.pak
+%if ! 0%{?use_system_libicu}
+%{_qt6_datadir}/resources/icudtl.dat
+%endif
 %dir %{_qtwebengine_dictionaries_dir}
 %dir %{_qt6_translationdir}/qtwebengine_locales
 %lang(am) %{_qt6_translationdir}/qtwebengine_locales/am.pak
@@ -599,6 +608,9 @@ done
 
 
 %changelog
+* Tue Jul 11 2023 František Zatloukal <fzatlouk@redhat.com> - 6.5.1-2
+- Rebuilt for ICU 73.2
+
 * Thu May 25 2023 Jan Grulich <jgrulich@redhat.com> - 6.5.1-1
 - 6.5.1
 
