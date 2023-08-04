@@ -49,7 +49,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.5.2
-Release: 1%{?dist}
+Release: 1.rv64%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -78,6 +78,13 @@ Patch2:  qtwebengine-link-pipewire.patch
 Patch3: qtwebengine-aarch64-new-stat.patch
 Patch4: qtwebengine-ffmpeg-first_dts.patch
 
+# riscv64 patches
+Patch10: riscv-angle.patch
+Patch11: riscv-breakpad.patch
+Patch12: riscv-crashpad.patch
+Patch13: riscv-dav1d.patch
+Patch14: riscv-sandbox.patch
+
 # FTBS warning: elaborated-type-specifier for a scoped enum must not
 # use the 'class' keyword
 Patch50: qtwebengine-fix-build.patch
@@ -97,7 +104,7 @@ Patch110: qtwebengine-blink-dlopen-h264.patch
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 # FIXME use/update qt6_qtwebengine_arches
 # 32-bit arches not supported (https://bugreports.qt.io/browse/QTBUG-102143)
-ExclusiveArch: aarch64 x86_64
+ExclusiveArch: aarch64 x86_64 riscv64
 
 BuildRequires: cmake
 BuildRequires: make
@@ -351,6 +358,13 @@ popd
 %patch2 -p1 -b .link-pipewire
 %patch3 -p1 -b .aarch64-new-stat
 %patch4 -p1 -b .qtwebengine-ffmpeg-first_dts
+
+# riscv64 patches
+%patch10 -p0 -d src/3rdparty
+%patch11 -p0 -d src/3rdparty
+%patch12 -p0 -d src/3rdparty
+%patch13 -p0 -d src/3rdparty
+%patch14 -p0 -d src/3rdparty
 
 %patch50 -p1 -b .fix-build.patch
 %if 0%{?fedora} && 0%{?fedora} >= 39
@@ -635,6 +649,10 @@ done
 
 
 %changelog
+* Fri Aug 4 2023 Zhengyu He <hezhy472013@gmail.com> - 6.5.2-1.rv64
+- Add support for riscv64
+- Use openSUSE's Chromium 107 patches from github:felixonmars/archriscv-packages (https://github.com/felixonmars/archriscv-packages/tree/master/qt6-webengine)
+
 * Mon Jul 24 2023 Jan Grulich <jgrulich@redhat.com> - 6.5.2-1
 - 6.5.2
 
