@@ -37,7 +37,7 @@ index c62a00ee0..af54520b7 100644
 
  OneWriterSeqLock::OneWriterSeqLock() : sequence_(0) {}
 diff --git a/src/3rdparty/chromium/extensions/common/constants.h b/src/3rdparty/chromium/extensions/common/constants.h
-index b1a0d56ea..019bc0743 100644
+index 27adc05bf..a4839e859 100644
 --- a/src/3rdparty/chromium/extensions/common/constants.h
 +++ b/src/3rdparty/chromium/extensions/common/constants.h
 @@ -12,6 +12,8 @@
@@ -63,7 +63,7 @@ index 574aca1ff..fca32671c 100644
  #include "gpu/config/gpu_feature_info.h"
  #include "gpu/gpu_export.h"
 diff --git a/src/3rdparty/chromium/net/base/parse_number.h b/src/3rdparty/chromium/net/base/parse_number.h
-index ea360d1c9..dca84fd02 100644
+index 091649590..a49ed9382 100644
 --- a/src/3rdparty/chromium/net/base/parse_number.h
 +++ b/src/3rdparty/chromium/net/base/parse_number.h
 @@ -10,6 +10,8 @@
@@ -99,31 +99,6 @@ index 7c0dcdecb..97054d476 100644
  };
 
  /// The non-thread-safe version of thread traits. Using this class as the
-diff --git a/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h b/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
-index 745b7b089..1e5dec4f5 100644
---- a/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
-+++ b/src/3rdparty/chromium/third_party/blink/renderer/platform/graphics/paint/effect_paint_property_node.h
-@@ -291,7 +291,7 @@ class PLATFORM_EXPORT EffectPaintPropertyNode
-     return state_.compositor_element_id;
-   }
-
--  const blink::DocumentTransitionSharedElementId&
-+  const cc::DocumentTransitionSharedElementId&
-   DocumentTransitionSharedElementId() const {
-     return state_.document_transition_shared_element_id;
-   }
-diff --git a/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h b/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
-index c7e4f2b37..e491a1f68 100644
---- a/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
-+++ b/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/minidump_descriptor.h
-@@ -33,6 +33,7 @@
- #include <assert.h>
- #include <sys/types.h>
-
-+#include <cstdint>
- #include <string>
-
- #include "client/linux/handler/microdump_extra_info.h"
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h b/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
 index 6cec3b6b8..541bba5b1 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
@@ -173,7 +148,7 @@ index 8e0306b6a..0fc0cc2b0 100644
  #include <vector>
 
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
-index 4cf9aad1b..3fa13e216 100644
+index 222f28ef8..335c4c396 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
 +++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
 @@ -15,6 +15,7 @@
@@ -209,11 +184,11 @@ index a3099e15d..2e6f0eea7 100644
  #include <utility>
 
 diff --git a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
-index d047de1bf..d7fc91a59 100644
+index 3ff56aa0b..a36388bb8 100644
 --- a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
 +++ b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
 @@ -21,6 +21,8 @@
- #include "perfetto/trace_processor/status.h"
+ #include "perfetto/ext/base/optional.h"
  #include "src/trace_processor/importers/common/trace_parser.h"
 
 +#include <cstdint>
@@ -249,10 +224,10 @@ index 9e073d4e1..da96f327c 100644
  #ifdef __cplusplus
  extern "C" {
  #endif
-diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h b/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
-index b70ac4aa5..7ba555564 100644
---- a/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
-+++ b/src/3rdparty/chromium/third_party/webrtc/modules/desktop_capture/linux/wayland/xdg_session_details.h
+diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h b/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h
+index ab52508c2..050229a2f 100644
+--- a/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h
++++ b/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h
 @@ -13,6 +13,7 @@
 
  #include <gio/gio.h>

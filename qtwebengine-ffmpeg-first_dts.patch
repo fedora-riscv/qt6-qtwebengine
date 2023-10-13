@@ -1,8 +1,8 @@
 diff --git a/configure.cmake b/configure.cmake
-index b20ab3b65..c41f66301 100644
+index 8f30b34..bbd934e 100644
 --- a/configure.cmake
 +++ b/configure.cmake
-@@ -203,25 +203,6 @@ int main(void){
+@@ -209,25 +209,6 @@ int main(void){
  }"
  )
 
@@ -28,7 +28,7 @@ index b20ab3b65..c41f66301 100644
  #### Features
 
  qt_feature("qtwebengine-build" PUBLIC
-@@ -542,11 +523,6 @@ add_check_for_support(
+@@ -563,11 +544,6 @@ add_check_for_support(
     CONDITION NOT LINUX OR DBUS_FOUND
     MESSAGE "Build requires dbus."
  )
@@ -41,10 +41,10 @@ index b20ab3b65..c41f66301 100644
  set(xcbSupport X11 LIBDRM XCOMPOSITE XCURSOR XRANDR XI XPROTO XSHMFENCE XTST)
  foreach(xs ${xcbSupport})
 diff --git a/src/3rdparty/chromium/AUTHORS b/src/3rdparty/chromium/AUTHORS
-index 8d638184b..80e4a9b35 100644
+index ff6abe8..0fd7937 100644
 --- a/src/3rdparty/chromium/AUTHORS
 +++ b/src/3rdparty/chromium/AUTHORS
-@@ -94,6 +94,7 @@ Andra Paraschiv <andra.paraschiv@intel.com>
+@@ -99,6 +99,7 @@ Andra Paraschiv <andra.paraschiv@intel.com>
  Andras Tokodi <a.tokodi@eyeo.com>
  Andreas Nazlidis <andreas221b@gmail.com>
  Andreas Papacharalampous <andreas@apap04.com>
@@ -53,10 +53,10 @@ index 8d638184b..80e4a9b35 100644
  Andrei Parvu <andrei.prv@gmail.com>
  Andrei Parvu <parvu@adobe.com>
 diff --git a/src/3rdparty/chromium/media/filters/ffmpeg_demuxer.cc b/src/3rdparty/chromium/media/filters/ffmpeg_demuxer.cc
-index 7b709d70d..d97b6b4d0 100644
+index f41464b..3aa3918 100644
 --- a/src/3rdparty/chromium/media/filters/ffmpeg_demuxer.cc
 +++ b/src/3rdparty/chromium/media/filters/ffmpeg_demuxer.cc
-@@ -58,7 +58,7 @@ namespace media {
+@@ -59,7 +59,7 @@ namespace media {
 
  namespace {
 
@@ -65,7 +65,7 @@ index 7b709d70d..d97b6b4d0 100644
 
  void SetAVStreamDiscard(AVStream* stream, AVDiscard discard) {
    DCHECK(stream);
-@@ -101,7 +101,7 @@ static base::TimeDelta FramesToTimeDelta(int frames, double sample_rate) {
+@@ -97,7 +97,7 @@ static base::TimeDelta FramesToTimeDelta(int frames, double sample_rate) {
                              sample_rate);
  }
 
@@ -74,7 +74,7 @@ index 7b709d70d..d97b6b4d0 100644
    // The default start time is zero.
    base::TimeDelta start_time;
 
-@@ -111,12 +111,12 @@ static base::TimeDelta ExtractStartTime(AVStream* stream) {
+@@ -107,12 +107,12 @@ static base::TimeDelta ExtractStartTime(AVStream* stream) {
 
    // Next try to use the first DTS value, for codecs where we know PTS == DTS
    // (excludes all H26x codecs). The start time must be returned in PTS.
@@ -89,7 +89,7 @@ index 7b709d70d..d97b6b4d0 100644
      if (first_pts < start_time)
        start_time = first_pts;
    }
-@@ -285,6 +285,7 @@ FFmpegDemuxerStream::FFmpegDemuxerStream(
+@@ -270,6 +270,7 @@ FFmpegDemuxerStream::FFmpegDemuxerStream(
        fixup_negative_timestamps_(false),
        fixup_chained_ogg_(false),
        num_discarded_packet_warnings_(0),
@@ -97,7 +97,7 @@ index 7b709d70d..d97b6b4d0 100644
        last_packet_pos_(AV_NOPTS_VALUE),
        last_packet_dts_(AV_NOPTS_VALUE) {
    DCHECK(demuxer_);
-@@ -351,6 +352,11 @@ void FFmpegDemuxerStream::EnqueuePacket(ScopedAVPacket packet) {
+@@ -336,6 +337,11 @@ void FFmpegDemuxerStream::EnqueuePacket(ScopedAVPacket packet) {
    int64_t packet_dts =
        packet->dts == AV_NOPTS_VALUE ? packet->pts : packet->dts;
 
@@ -109,7 +109,7 @@ index 7b709d70d..d97b6b4d0 100644
    // Chained ogg files have non-monotonically increasing position and time stamp
    // values, which prevents us from using them to determine if a packet should
    // be dropped. Since chained ogg is only allowed on single track audio only
-@@ -698,6 +704,7 @@ void FFmpegDemuxerStream::FlushBuffers(bool preserve_packet_position) {
+@@ -683,6 +689,7 @@ void FFmpegDemuxerStream::FlushBuffers(bool preserve_packet_position) {
    ResetBitstreamConverter();
 
    if (!preserve_packet_position) {
@@ -117,7 +117,7 @@ index 7b709d70d..d97b6b4d0 100644
      last_packet_pos_ = AV_NOPTS_VALUE;
      last_packet_dts_ = AV_NOPTS_VALUE;
    }
-@@ -1449,7 +1456,8 @@ void FFmpegDemuxer::OnFindStreamInfoDone(int result) {
+@@ -1452,7 +1459,8 @@ void FFmpegDemuxer::OnFindStreamInfoDone(int result) {
 
      max_duration = std::max(max_duration, streams_[i]->duration());
 
@@ -127,7 +127,7 @@ index 7b709d70d..d97b6b4d0 100644
 
      // Note: This value is used for seeking, so we must take the true value and
      // not the one possibly clamped to zero below.
-@@ -1606,7 +1614,7 @@ FFmpegDemuxerStream* FFmpegDemuxer::FindStreamWithLowestStartTimestamp(
+@@ -1609,7 +1617,7 @@ FFmpegDemuxerStream* FFmpegDemuxer::FindStreamWithLowestStartTimestamp(
    for (const auto& stream : streams_) {
      if (!stream || stream->IsEnabled() != enabled)
        continue;
@@ -136,7 +136,7 @@ index 7b709d70d..d97b6b4d0 100644
        continue;
      if (!lowest_start_time_stream ||
          stream->start_time() < lowest_start_time_stream->start_time()) {
-@@ -1627,7 +1635,7 @@ FFmpegDemuxerStream* FFmpegDemuxer::FindPreferredStreamForSeeking(
+@@ -1630,7 +1638,7 @@ FFmpegDemuxerStream* FFmpegDemuxer::FindPreferredStreamForSeeking(
      if (stream->type() != DemuxerStream::VIDEO)
        continue;
 
@@ -146,10 +146,10 @@ index 7b709d70d..d97b6b4d0 100644
 
      if (!stream->IsEnabled())
 diff --git a/src/3rdparty/chromium/media/filters/ffmpeg_demuxer.h b/src/3rdparty/chromium/media/filters/ffmpeg_demuxer.h
-index 45ab0f348..6b093318f 100644
+index 086a795..ba9c665 100644
 --- a/src/3rdparty/chromium/media/filters/ffmpeg_demuxer.h
 +++ b/src/3rdparty/chromium/media/filters/ffmpeg_demuxer.h
-@@ -152,6 +152,8 @@ class MEDIA_EXPORT FFmpegDemuxerStream : public DemuxerStream {
+@@ -145,6 +145,8 @@ class MEDIA_EXPORT FFmpegDemuxerStream : public DemuxerStream {
    base::TimeDelta start_time() const { return start_time_; }
    void set_start_time(base::TimeDelta time) { start_time_ = time; }
 
@@ -158,11 +158,11 @@ index 45ab0f348..6b093318f 100644
   private:
    friend class FFmpegDemuxerTest;
 
-@@ -209,6 +211,7 @@ class MEDIA_EXPORT FFmpegDemuxerStream : public DemuxerStream {
+@@ -202,6 +204,7 @@ class MEDIA_EXPORT FFmpegDemuxerStream : public DemuxerStream {
    bool fixup_chained_ogg_;
 
    int num_discarded_packet_warnings_;
 +  int64_t first_dts_;
    int64_t last_packet_pos_;
    int64_t last_packet_dts_;
- };
+   // Requested buffer count. The actual returned buffer count could be less
