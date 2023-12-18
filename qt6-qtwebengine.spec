@@ -48,8 +48,8 @@
 
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
-Version: 6.6.0
-Release: 2.rv64%{?dist}
+Version: 6.6.1
+Release: 1.rv64%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -689,6 +689,9 @@ done
 
 
 %changelog
+* Tue Nov 28 2023 Jan Grulich <jgrulich@redhat.com> - 6.6.1-1
+- 6.6.1
+
 * Mon Dec 18 2023 Guoguo <i@qwq.trade> - 6.6.0-2.rv64
 - Merge patches from github:felixonmars/archriscv-packages
 - Merge updates from Fedora
