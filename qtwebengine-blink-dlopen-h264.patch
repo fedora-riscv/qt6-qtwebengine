@@ -1,11 +1,5 @@
-From 828d03c76b3b108019b1cf66062b0e9679012207 Mon Sep 17 00:00:00 2001
-From: Jan Grulich <grulja@gmail.com>
-Date: Mon, 23 Jan 2023 11:04:00 +0100
-Subject: [Blink] mediarecorder: allow to dlopen openh264
-
-
 diff --git a/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/BUILD.gn b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/BUILD.gn
-index cf6de49bef6b2..61e8879d6b97f 100644
+index cf6de49be..61e8879d6 100644
 --- a/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/BUILD.gn
 +++ b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/BUILD.gn
 @@ -5,12 +5,23 @@
@@ -13,12 +7,12 @@ index cf6de49bef6b2..61e8879d6b97f 100644
  import("//third_party/blink/renderer/modules/modules.gni")
  import("//third_party/webrtc/webrtc.gni")
 +import("//tools/generate_stubs/rules.gni")
- 
+
  buildflag_header("buildflags") {
    header = "buildflags.h"
    flags = [ "RTC_USE_H264=$rtc_use_h264" ]
  }
- 
+
 +if (rtc_use_h264 && rtc_dlopen_openh264) {
 +  # When OpenH264 is not directly linked, use stubs to allow for dlopening of
 +  # the binary.
@@ -35,7 +29,7 @@ index cf6de49bef6b2..61e8879d6b97f 100644
 @@ -56,6 +67,11 @@ blink_modules_sources("mediarecorder") {
        "h264_encoder.h",
      ]
- 
+
 -    deps += [ "//third_party/openh264:encoder" ]
 +    if (rtc_dlopen_openh264) {
 +      defines = [ "BLINK_DLOPEN_OPENH264" ]
@@ -46,11 +40,11 @@ index cf6de49bef6b2..61e8879d6b97f 100644
    }
  }
 diff --git a/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/h264_encoder.cc b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/h264_encoder.cc
-index c9aee6f3a..0f4ef593d 100644
+index 4253f3280..56ea1574c 100644
 --- a/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/h264_encoder.cc
 +++ b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/h264_encoder.cc
-@@ -24,10 +24,22 @@
- #include "third_party/openh264/src/codec/api/svc/codec_def.h"
+@@ -23,9 +23,21 @@
+ #include "third_party/openh264/src/codec/api/wels/codec_def.h"
  #include "ui/gfx/geometry/size.h"
 
 +#if defined(BLINK_DLOPEN_OPENH264)
@@ -58,7 +52,6 @@ index c9aee6f3a..0f4ef593d 100644
 +#endif  // defined(BLINK_DLOPEN_OPENH264)
 +
  namespace blink {
-
  namespace {
 
 +#if defined(BLINK_DLOPEN_OPENH264)
@@ -72,9 +65,9 @@ index c9aee6f3a..0f4ef593d 100644
  absl::optional<EProfileIdc> ToOpenH264Profile(
      media::VideoCodecProfile profile) {
    static const HashMap<media::VideoCodecProfile, EProfileIdc>
-@@ -98,6 +110,13 @@ H264Encoder::H264Encoder(
+@@ -86,6 +98,13 @@ H264Encoder::H264Encoder(
+     : Encoder(on_encoded_video_cb, bits_per_second),
        codec_profile_(codec_profile) {
-   DCHECK(encoding_thread_);
    DCHECK_EQ(codec_profile_.codec_id, VideoTrackRecorder::CodecId::kH264);
 +
 +#if defined(BLINK_DLOPEN_OPENH264)
@@ -85,11 +78,11 @@ index c9aee6f3a..0f4ef593d 100644
 +#endif
  }
 
- H264Encoder::~H264Encoder() {
-@@ -180,6 +199,14 @@ void H264Encoder::EncodeOnEncodingTaskRunner(
- bool H264Encoder::ConfigureEncoderOnEncodingTaskRunner(const gfx::Size& size) {
-   TRACE_EVENT0("media", "H264Encoder::ConfigureEncoderOnEncodingTaskRunner");
-   DCHECK(encoding_task_runner_->RunsTasksInCurrentSequence());
+ // Needs to be defined here to combat a Windows linking issue.
+@@ -167,6 +186,14 @@ void H264Encoder::EncodeFrame(scoped_refptr<media::VideoFrame> frame,
+
+ bool H264Encoder::ConfigureEncoder(const gfx::Size& size) {
+   TRACE_EVENT0("media", "H264Encoder::ConfigureEncoder");
 +
 +#if defined(BLINK_DLOPEN_OPENH264)
 +  if (!openh264_dlopened_) {
@@ -102,22 +95,21 @@ index c9aee6f3a..0f4ef593d 100644
    if (WelsCreateSVCEncoder(&temp_encoder) != 0) {
      NOTREACHED() << "Failed to create OpenH264 encoder";
 diff --git a/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/h264_encoder.h b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/h264_encoder.h
-index e7aa2c338..79e902f67 100644
+index 1d9d7bc5a..a5b7eefe3 100644
 --- a/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/h264_encoder.h
 +++ b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/h264_encoder.h
-@@ -62,6 +62,8 @@ class MODULES_EXPORT H264Encoder final : public VideoTrackRecorder::Encoder {
-   // The |VideoFrame::timestamp()| of the first received frame. Only used on
-   // VideoTrackRecorder::Encoder::encoding_thread_.
+@@ -58,6 +58,8 @@ class MODULES_EXPORT H264Encoder final : public VideoTrackRecorder::Encoder {
+   // The |VideoFrame::timestamp()| of the first received frame.
    base::TimeTicks first_frame_timestamp_;
+   base::WeakPtrFactory<H264Encoder> weak_factory_{this};
 +
 +  bool openh264_dlopened_ = false;
  };
 
  }  // namespace blink
-
 diff --git a/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/openh264.sigs b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/openh264.sigs
 new file mode 100644
-index 0000000000000..4924f8e9a17de
+index 000000000..4924f8e9a
 --- /dev/null
 +++ b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/openh264.sigs
 @@ -0,0 +1,14 @@
@@ -137,7 +129,7 @@ index 0000000000000..4924f8e9a17de
 +void WelsGetCodecVersionEx(OpenH264Version *pVersion);
 diff --git a/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/openh264_stub_header.fragment b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/openh264_stub_header.fragment
 new file mode 100644
-index 0000000000000..9bc0a7cbee038
+index 000000000..e8a3727a0
 --- /dev/null
 +++ b/src/3rdparty/chromium/third_party/blink/renderer/modules/mediarecorder/openh264_stub_header.fragment
 @@ -0,0 +1,11 @@
@@ -146,9 +138,9 @@ index 0000000000000..9bc0a7cbee038
 +
 +extern "C" {
 +
-+#include "third_party/openh264/src/codec/api/svc/codec_api.h"
-+#include "third_party/openh264/src/codec/api/svc/codec_app_def.h"
-+#include "third_party/openh264/src/codec/api/svc/codec_def.h"
-+#include "third_party/openh264/src/codec/api/svc/codec_ver.h"
++#include "third_party/openh264/src/codec/api/wels/codec_api.h"
++#include "third_party/openh264/src/codec/api/wels/codec_app_def.h"
++#include "third_party/openh264/src/codec/api/wels/codec_def.h"
++#include "third_party/openh264/src/codec/api/wels/codec_ver.h"
 +
 +}
