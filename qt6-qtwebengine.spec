@@ -80,10 +80,12 @@ Patch4: qtwebengine-ffmpeg-first_dts.patch
 
 # riscv64 patches
 Patch10: riscv-angle.patch
-Patch11: riscv-breakpad.patch
-Patch12: riscv-crashpad.patch
-Patch13: riscv-dav1d.patch
-Patch14: riscv-sandbox.patch
+Patch11: riscv-crashpad.patch
+Patch12: riscv-libgav1.patch
+Patch13: riscv-sandbox.patch
+Patch14: riscv-base.patch
+Patch15: riscv-dav1d.patch
+Patch16: riscv-libyuv.patch
 
 # FTBS warning: elaborated-type-specifier for a scoped enum must not
 # use the 'class' keyword
@@ -383,11 +385,13 @@ popd
 %patch4 -p1 -b .qtwebengine-ffmpeg-first_dts
 
 # riscv64 patches
-%patch10 -p0 -d src/3rdparty
-%patch11 -p0 -d src/3rdparty
-%patch12 -p0 -d src/3rdparty
-%patch13 -p0 -d src/3rdparty
-%patch14 -p0 -d src/3rdparty
+%patch10 -p1 -d src/3rdparty/chromium
+%patch11 -p1 -d src/3rdparty/chromium
+%patch12 -p1 -d src/3rdparty/chromium
+%patch13 -p1 -d src/3rdparty/chromium
+%patch14 -p1 -d src/3rdparty/chromium
+%patch15 -p1 -d src/3rdparty/chromium
+%patch16 -p1 -d src/3rdparty/chromium
 
 %patch50 -p1 -b .fix-build.patch
 %if 0%{?fedora} && 0%{?fedora} >= 39
@@ -685,6 +689,10 @@ done
 
 
 %changelog
+* Mon Dec 18 2023 Guoguo <i@qwq.trade> - 6.6.0-2.rv64
+- Merge patches from github:felixonmars/archriscv-packages
+- Merge updates from Fedora
+
 * Fri Oct 27 2023 Jan Grulich <jgrulich@redhat.com> - 6.6.0-2
 - Move v8_context_snapshot file to correct subpackage
 
