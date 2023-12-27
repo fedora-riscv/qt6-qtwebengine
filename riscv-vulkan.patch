@@ -1,0 +1,13 @@
+Index: qtwebengine-everywhere-src-6.6.0/src/3rdparty/chromium/third_party/vulkan-deps/vulkan-loader/src/BUILD.gn
+===================================================================
+--- chromium.orig/third_party/vulkan-deps/vulkan-loader/src/BUILD.gn
++++ chromium/third_party/vulkan-deps/vulkan-loader/src/BUILD.gn
+@@ -103,7 +103,6 @@ if (!is_android) {
+       "loader/adapters.h",
+       "loader/allocation.c",
+       "loader/allocation.h",
+-      "loader/asm_offset.c",
+       "loader/cJSON.c",
+       "loader/cJSON.h",
+       "loader/debug_utils.c",
+

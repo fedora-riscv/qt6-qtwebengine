@@ -86,6 +86,7 @@ Patch13: riscv-sandbox.patch
 Patch14: riscv-base.patch
 Patch15: riscv-dav1d.patch
 Patch16: riscv-libyuv.patch
+Patch17: riscv-vulkan.patch
 
 # FTBS warning: elaborated-type-specifier for a scoped enum must not
 # use the 'class' keyword
@@ -392,6 +393,7 @@ popd
 %patch14 -p1 -d src/3rdparty/chromium
 %patch15 -p1 -d src/3rdparty/chromium
 %patch16 -p1 -d src/3rdparty/chromium
+%patch17 -p1 -d src/3rdparty/chromium
 
 %patch50 -p1 -b .fix-build.patch
 %if 0%{?fedora} && 0%{?fedora} >= 39
@@ -462,6 +464,9 @@ export NINJA_PATH=%{__ninja}
   -DFEATURE_webengine_system_ffmpeg:BOOL=ON \
   -DFEATURE_webengine_webrtc:BOOL=ON \
   -DFEATURE_webengine_webrtc_pipewire:BOOL=ON \
+%ifarch riscv64
+  -DFEATURE_webengine_vaapi=OFF \
+%endif
   -DQT_BUILD_EXAMPLES:BOOL=ON
 
 %cmake_build
