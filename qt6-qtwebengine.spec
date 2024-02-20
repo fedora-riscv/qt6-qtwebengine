@@ -664,9 +664,10 @@ done
 %{_qt6_libdir}/pkgconfig/Qt6PdfWidgets.pc
 %{_qt6_archdatadir}/mkspecs/modules/qt_lib_pdf*.pri
 
+%if 0%{?examples}
 %files -n qt6-qtpdf-examples
 %{_qt6_examplesdir}/pdf*
-
+%endif
 
 %changelog
 * Mon Feb 19 2024 Jan Grulich <jgrulich@redhat.com> - 6.6.2-2
