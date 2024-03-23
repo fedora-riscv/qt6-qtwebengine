@@ -46,10 +46,12 @@
 # and designer plugins
 %global __provides_exclude_from ^%{_qt6_plugindir}/.*\\.so$
 
+%global examples 1
+
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
-Version: 6.6.0
-Release: 2.rv64%{?dist}
+Version: 6.6.2
+Release: 3.rv64%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -92,11 +94,6 @@ Patch17: riscv-vulkan.patch
 # use the 'class' keyword
 Patch50: qtwebengine-fix-build.patch
 
-# FTBFS Fix with Python 3.12 later on
-# Parts of the project are fine with zombie-imp, this one not, however
-# (It's messing with sys.path a lot)
-Patch60: Partial-migration-from-imp-to-importlib.patch
-
 ## Upstream patches:
 # https://webrtc-review.googlesource.com/c/src/+/285464
 Patch100: qtwebengine-webrtc-dlopen-h264.patch
@@ -130,7 +127,7 @@ BuildRequires: bison
 BuildRequires: flex
 BuildRequires: gcc-c++
 %if 0%{?rhel} && 0%{?rhel} < 10
-BuildRequires: gcc-toolset-12
+BuildRequires: gcc-toolset-13
 %endif
 # gn links statically (for now)
 BuildRequires: libstdc++-static
@@ -347,11 +344,12 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 %description devtools
 Support for remote debugging.
 
+%if 0%{?examples}
 %package examples
 Summary: Example files for %{name}
-
 %description examples
 %{summary}.
+%endif
 
 %package -n qt6-qtpdf
 Summary: Qt6 - QtPdf components
@@ -396,9 +394,6 @@ popd
 %patch17 -p1 -d src/3rdparty/chromium
 
 %patch50 -p1 -b .fix-build.patch
-%if 0%{?fedora} && 0%{?fedora} >= 39
-%patch60 -p1 -b .fix-py-imp.patch
-%endif
 
 ## upstream patches
 %patch100 -p1 -b .webrtc-dlopen-h264
@@ -443,7 +438,7 @@ cp -p src/3rdparty/chromium/LICENSE LICENSE.Chromium
 
 %build
 %if 0%{?rhel} && 0%{?rhel} < 10
-. /opt/rh/gcc-toolset-12/enable
+. /opt/rh/gcc-toolset-13/enable
 %endif
 export STRIP=strip
 export NINJAFLAGS="%{__ninja_common_opts}"
@@ -467,7 +462,8 @@ export NINJA_PATH=%{__ninja}
 %ifarch riscv64
   -DFEATURE_webengine_vaapi=OFF \
 %endif
-  -DQT_BUILD_EXAMPLES:BOOL=ON
+  -DQT_BUILD_EXAMPLES:BOOL=%{?examples:ON}%{!?examples:OFF} \
+  -DQT_INSTALL_EXAMPLES_SOURCES=%{?examples:ON}%{!?examples:OFF}
 
 %cmake_build
 
@@ -525,9 +521,6 @@ done
 
 %files
 %license LICENSE.*
-%if 0%{?docs}
-%license src/webengine/doc/src/qtwebengine-3rdparty.qdoc
-%endif
 %{_qt6_libdir}/libQt6WebEngineCore.so.*
 %{_qt6_libdir}/libQt6WebEngineQuick.so.*
 %{_qt6_libdir}/libQt6WebEngineQuickDelegatesQml.so.*
@@ -537,7 +530,6 @@ done
 %{_qt6_libdir}/qt6/libexec/QtWebEngineProcess
 %dir %{_qt6_libdir}/qt6/qml/QtWebEngine
 %{_qt6_libdir}/qt6/qml/QtWebEngine/*
-%{_qt6_plugindir}/designer/libqwebengineview.so
 %dir %{_qt6_datadir}/resources/
 %{_qt6_datadir}/resources/v8_context_snapshot.bin
 %{_qt6_datadir}/resources/qtwebengine_resources.pak
@@ -640,16 +632,14 @@ done
 %{_qt6_libdir}/pkgconfig/Qt6WebEngineQuickDelegatesQml.pc
 %{_qt6_libdir}/pkgconfig/Qt6WebEngineWidgets.pc
 %{_qt6_archdatadir}/mkspecs/modules/qt_lib_webengine*.pri
+%{_qt6_plugindir}/designer/libqwebengineview.so
 
 %files devtools
 %{_qt6_datadir}/resources/qtwebengine_devtools_resources.pak
 
+%if 0%{?examples}
 %files examples
 %{_qt6_examplesdir}/webengine*
-
-%if 0%{?docs}
-%files doc
-%{_qt6_docdir}/*
 %endif
 
 %files -n qt6-qtpdf
@@ -689,11 +679,28 @@ done
 %{_qt6_libdir}/pkgconfig/Qt6PdfWidgets.pc
 %{_qt6_archdatadir}/mkspecs/modules/qt_lib_pdf*.pri
 
+%if 0%{?examples}
 %files -n qt6-qtpdf-examples
 %{_qt6_examplesdir}/pdf*
-
+%endif
 
 %changelog
+* Sun Mar 3 2024 Marie Loise Nolden <loise@kde.org> - 6.6.2-3
+- move qt designer plugin to -devel 
+- remove old doc package code (docs are in qt6-doc)
+
+* Mon Feb 19 2024 Jan Grulich <jgrulich@redhat.com> - 6.6.2-2
+- Examples: also install source files
+
+* Thu Feb 15 2024 Jan Grulich <jgrulich@redhat.com> - 6.6.2-1
+- 6.6.2
+
+* Mon Jan 22 2024 Fedora Release Engineering <releng@fedoraproject.org> - 6.6.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
+* Tue Nov 28 2023 Jan Grulich <jgrulich@redhat.com> - 6.6.1-1
+- 6.6.1
+
 * Mon Dec 18 2023 Guoguo <i@qwq.trade> - 6.6.0-2.rv64
 - Merge patches from github:felixonmars/archriscv-packages
 - Merge updates from Fedora
