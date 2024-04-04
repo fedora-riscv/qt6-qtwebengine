@@ -1,75 +1,75 @@
 diff --git a/src/3rdparty/chromium/base/debug/profiler.h b/src/3rdparty/chromium/base/debug/profiler.h
-index 80c73feb9..d3921a6aa 100644
+index 035affc7c..d8e1a5346 100644
 --- a/src/3rdparty/chromium/base/debug/profiler.h
 +++ b/src/3rdparty/chromium/base/debug/profiler.h
 @@ -5,6 +5,7 @@
  #ifndef BASE_DEBUG_PROFILER_H_
  #define BASE_DEBUG_PROFILER_H_
-
+ 
 +#include <cstdint>
  #include <stddef.h>
- #include <cstdint>
-
+ #include <stdint.h>
+ 
 diff --git a/src/3rdparty/chromium/cc/trees/target_property.cc b/src/3rdparty/chromium/cc/trees/target_property.cc
-index 714bd5efe..cf0bb5fa9 100644
+index 7d73467a9..be4febd9a 100644
 --- a/src/3rdparty/chromium/cc/trees/target_property.cc
 +++ b/src/3rdparty/chromium/cc/trees/target_property.cc
 @@ -8,6 +8,8 @@
-
+ 
  #include "ui/gfx/animation/keyframe/target_property.h"
-
+ 
 +#include <cstdint>
 +
  namespace cc {
-
+ 
  static_assert(TargetProperty::LAST_TARGET_PROPERTY <
 diff --git a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 index c62a00ee0..af54520b7 100644
 --- a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 +++ b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 @@ -6,6 +6,8 @@
-
+ 
  #include "base/threading/platform_thread.h"
-
+ 
 +#include <cstdint>
 +
  namespace device {
-
+ 
  OneWriterSeqLock::OneWriterSeqLock() : sequence_(0) {}
 diff --git a/src/3rdparty/chromium/extensions/common/constants.h b/src/3rdparty/chromium/extensions/common/constants.h
-index 27adc05bf..a4839e859 100644
+index adbcfa540..5923bd2fe 100644
 --- a/src/3rdparty/chromium/extensions/common/constants.h
 +++ b/src/3rdparty/chromium/extensions/common/constants.h
-@@ -12,6 +12,8 @@
+@@ -13,6 +13,8 @@
  #include "build/chromeos_buildflags.h"
  #include "extensions/common/extensions_export.h"
-
+ 
 +#include <cstdint>
 +
  namespace extensions {
-
+ 
  // Scheme we serve extension content from.
 diff --git a/src/3rdparty/chromium/gpu/config/gpu_util.h b/src/3rdparty/chromium/gpu/config/gpu_util.h
-index 574aca1ff..fca32671c 100644
+index 8edbfbe7d..467ebd65e 100644
 --- a/src/3rdparty/chromium/gpu/config/gpu_util.h
 +++ b/src/3rdparty/chromium/gpu/config/gpu_util.h
 @@ -5,6 +5,8 @@
  #ifndef GPU_CONFIG_GPU_UTIL_H_
  #define GPU_CONFIG_GPU_UTIL_H_
-
+ 
 +#include <cstdint>
 +
  #include "build/build_config.h"
  #include "gpu/config/gpu_feature_info.h"
  #include "gpu/gpu_export.h"
 diff --git a/src/3rdparty/chromium/net/base/parse_number.h b/src/3rdparty/chromium/net/base/parse_number.h
-index 091649590..a49ed9382 100644
+index f923b18a7..8f3c6ef78 100644
 --- a/src/3rdparty/chromium/net/base/parse_number.h
 +++ b/src/3rdparty/chromium/net/base/parse_number.h
 @@ -10,6 +10,8 @@
  #include "base/strings/string_piece.h"
  #include "net/base/net_export.h"
-
+ 
 +#include <cstdint>
 +
  // This file contains utility functions for parsing numbers, in the context of
@@ -93,11 +93,11 @@ index 7c0dcdecb..97054d476 100644
 @@ -67,8 +71,6 @@ class ThreadSafeThreadTraits {
      int32_t ref_;
    };
-
+ 
 -  typedef pp::Lock Lock;
 -  typedef pp::AutoLock AutoLock;
  };
-
+ 
  /// The non-thread-safe version of thread traits. Using this class as the
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h b/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
 index 6cec3b6b8..541bba5b1 100644
@@ -106,73 +106,13 @@ index 6cec3b6b8..541bba5b1 100644
 @@ -15,6 +15,7 @@
  #ifndef SRC_DAWN_NATIVE_CACHEKEY_H_
  #define SRC_DAWN_NATIVE_CACHEKEY_H_
-
+ 
 +#include <cstdint>
  #include <utility>
-
+ 
  #include "dawn/native/stream/ByteVectorSink.h"
-diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
-index 90077421d..f303f9e8b 100644
---- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
-+++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/entry_point_info.h
-@@ -15,6 +15,7 @@
- #ifndef SRC_TINT_READER_SPIRV_ENTRY_POINT_INFO_H_
- #define SRC_TINT_READER_SPIRV_ENTRY_POINT_INFO_H_
-
-+#include <cstdint>
- #include <string>
-
- #include "src/tint/ast/pipeline_stage.h"
-diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
-index 7a20e8738..655f69ce3 100644
---- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
-+++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/spirv/namer.h
-@@ -15,6 +15,7 @@
- #ifndef SRC_TINT_READER_SPIRV_NAMER_H_
- #define SRC_TINT_READER_SPIRV_NAMER_H_
-
-+#include <cstdint>
- #include <string>
- #include <unordered_map>
- #include <vector>
-diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
-index 8e0306b6a..0fc0cc2b0 100644
---- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
-+++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/lexer.h
-@@ -15,6 +15,7 @@
- #ifndef SRC_TINT_READER_WGSL_LEXER_H_
- #define SRC_TINT_READER_WGSL_LEXER_H_
-
-+#include <cstdint>
- #include <string>
- #include <vector>
-
-diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
-index 222f28ef8..335c4c396 100644
---- a/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
-+++ b/src/3rdparty/chromium/third_party/dawn/src/tint/reader/wgsl/token.h
-@@ -15,6 +15,7 @@
- #ifndef SRC_TINT_READER_WGSL_TOKEN_H_
- #define SRC_TINT_READER_WGSL_TOKEN_H_
-
-+#include <cstdint>
- #include <string>
- #include <string_view>
- #include <variant>
-diff --git a/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h b/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
-index 0601ca068..ac9dde64e 100644
---- a/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
-+++ b/src/3rdparty/chromium/third_party/dawn/src/tint/writer/spirv/operand.h
-@@ -15,6 +15,7 @@
- #ifndef SRC_TINT_WRITER_SPIRV_OPERAND_H_
- #define SRC_TINT_WRITER_SPIRV_OPERAND_H_
-
-+#include <cstdint>
- #include <cstring>
- #include <string>
- #include <variant>
 diff --git a/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc b/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
-index a3099e15d..2e6f0eea7 100644
+index e171db6c7..dfbd126b4 100644
 --- a/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
 +++ b/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
 @@ -30,6 +30,7 @@
@@ -182,19 +122,19 @@ index a3099e15d..2e6f0eea7 100644
 +#include <cstdio>
  #include <new>
  #include <utility>
-
+ 
 diff --git a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
-index 3ff56aa0b..a36388bb8 100644
+index cc2c3a2b3..8eb694e73 100644
 --- a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
 +++ b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
-@@ -21,6 +21,8 @@
- #include "perfetto/ext/base/optional.h"
+@@ -22,6 +22,8 @@
+ #include "perfetto/base/status.h"
  #include "src/trace_processor/importers/common/trace_parser.h"
-
+ 
 +#include <cstdint>
 +
  namespace perfetto {
-
+ 
  namespace protos {
 diff --git a/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp b/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
 index 0101632c5..3f04a2dd2 100644
@@ -203,7 +143,7 @@ index 0101632c5..3f04a2dd2 100644
 @@ -15,6 +15,10 @@
  #include <iterator>
  #include <string>
-
+ 
 +#include <string.h>
 +#include <algorithm>
 +#include <iterator>
@@ -212,13 +152,13 @@ index 0101632c5..3f04a2dd2 100644
      "aliceblue",
      "antiquewhite",
 diff --git a/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h b/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
-index 9e073d4e1..da96f327c 100644
+index b26de34cc..caa0df9f9 100644
 --- a/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
 +++ b/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
 @@ -105,6 +105,8 @@ Documentation of all members: vk_mem_alloc.h
  - [Source repository on GitHub](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator)
  */
-
+ 
 +#include <cstdio>
 +
  #ifdef __cplusplus
@@ -229,59 +169,59 @@ index ab52508c2..050229a2f 100644
 --- a/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h
 +++ b/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h
 @@ -13,6 +13,7 @@
-
+ 
  #include <gio/gio.h>
-
+ 
 +#include <cstdint>
  #include <string>
-
+ 
  namespace webrtc {
 diff --git a/src/3rdparty/chromium/ui/events/gesture_event_details.h b/src/3rdparty/chromium/ui/events/gesture_event_details.h
-index 41ff9906d..1864e9e21 100644
+index bdf840619..68f473f27 100644
 --- a/src/3rdparty/chromium/ui/events/gesture_event_details.h
 +++ b/src/3rdparty/chromium/ui/events/gesture_event_details.h
 @@ -5,6 +5,7 @@
  #ifndef UI_EVENTS_GESTURE_EVENT_DETAILS_H_
  #define UI_EVENTS_GESTURE_EVENT_DETAILS_H_
-
+ 
 +#include <cstdint>
  #include <string.h>
-
+ 
  #include "base/check_op.h"
 diff --git a/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h b/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
-index ab0ce5808..9a9f187bb 100644
+index d32766283..18b8a85e1 100644
 --- a/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
 +++ b/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
-@@ -5,6 +5,7 @@
- #ifndef UI_GFX_LINEAR_GRADIENT_H_
- #define UI_GFX_LINEAR_GRADIENT_H_
-
+@@ -7,6 +7,7 @@
+ 
+ #include <stdint.h>
+ 
 +#include <cstdint>
  #include <array>
+ #include <cstddef>
  #include <cstdint>
- #include <string>
 diff --git a/src/3rdparty/chromium/v8/src/base/macros.h b/src/3rdparty/chromium/v8/src/base/macros.h
-index cd5b91f74..a74c0021f 100644
+index f81258363..ec7d67550 100644
 --- a/src/3rdparty/chromium/v8/src/base/macros.h
 +++ b/src/3rdparty/chromium/v8/src/base/macros.h
 @@ -5,6 +5,7 @@
  #ifndef V8_BASE_MACROS_H_
  #define V8_BASE_MACROS_H_
-
+ 
 +#include <cstdint>
  #include <limits>
  #include <type_traits>
-
+ 
 diff --git a/src/core/browsing_data_remover_delegate_qt.h b/src/core/browsing_data_remover_delegate_qt.h
-index a611a710c..67743f52b 100644
+index d33af4acb..ce864b6bd 100644
 --- a/src/core/browsing_data_remover_delegate_qt.h
 +++ b/src/core/browsing_data_remover_delegate_qt.h
 @@ -8,6 +8,8 @@
-
+ 
  #include "content/public/browser/browsing_data_remover_delegate.h"
-
+ 
 +#include <cstdint>
 +
  namespace QtWebEngineCore {
-
+ 
  class BrowsingDataRemoverDelegateQt : public content::BrowsingDataRemoverDelegate {

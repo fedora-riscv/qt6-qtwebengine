@@ -1,19 +1,19 @@
 diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/video_coding/BUILD.gn b/src/3rdparty/chromium/third_party/webrtc/modules/video_coding/BUILD.gn
-index 8e3529974..ca7370599 100644
+index 738d3d4ed..c9b1a3455 100644
 --- a/src/3rdparty/chromium/third_party/webrtc/modules/video_coding/BUILD.gn
 +++ b/src/3rdparty/chromium/third_party/webrtc/modules/video_coding/BUILD.gn
 @@ -7,6 +7,7 @@
  # be found in the AUTHORS file in the root of the source tree.
-
+ 
  import("//third_party/libaom/options.gni")
 +import("//tools/generate_stubs/rules.gni")
  import("../../webrtc.gni")
-
+ 
  rtc_library("encoded_frame") {
-@@ -461,6 +462,17 @@ rtc_library("video_coding_utility") {
+@@ -453,6 +454,17 @@ rtc_library("video_coding_utility") {
    ]
  }
-
+ 
 +if (rtc_use_h264 && rtc_dlopen_openh264) {
 +  # When OpenH264 is not directly linked, use stubs to allow for dlopening of
 +  # the binary.
@@ -28,9 +28,9 @@ index 8e3529974..ca7370599 100644
  rtc_library("webrtc_h264") {
    visibility = [ "*" ]
    sources = [
-@@ -507,10 +519,15 @@ rtc_library("webrtc_h264") {
+@@ -499,10 +511,15 @@ rtc_library("webrtc_h264") {
    ]
-
+ 
    if (rtc_use_h264) {
 -    deps += [
 -      "//third_party/ffmpeg",
@@ -55,15 +55,15 @@ index b6023ac50..228486870 100644
 @@ -39,10 +39,22 @@
  #include "third_party/openh264/src/codec/api/wels/codec_def.h"
  #include "third_party/openh264/src/codec/api/wels/codec_ver.h"
-
+ 
 +#if defined(WEBRTC_DLOPEN_OPENH264)
 +#include "modules/video_coding/codecs/h264/openh264_stubs.h"
 +#endif  // defined(WEBRTC_DLOPEN_OPENH264)
 +
  namespace webrtc {
-
+ 
  namespace {
-
+ 
 +#if defined(WEBRTC_DLOPEN_OPENH264)
 +using third_party_webrtc_modules_video_coding_codecs_h264::InitializeStubs;
 +using third_party_webrtc_modules_video_coding_codecs_h264::kModuleOpenh264;
@@ -73,10 +73,10 @@ index b6023ac50..228486870 100644
 +#endif
 +
  const bool kOpenH264EncoderDetailedLogging = false;
-
+ 
  // QP scaling thresholds.
 @@ -198,6 +210,15 @@ H264EncoderImpl::~H264EncoderImpl() {
-
+ 
  int32_t H264EncoderImpl::InitEncode(const VideoCodec* inst,
                                      const VideoEncoder::Settings& settings) {
 +#if defined(WEBRTC_DLOPEN_OPENH264)
@@ -129,25 +129,25 @@ index 000000000..9bc0a7cbe
 +
 +}
 diff --git a/src/3rdparty/chromium/third_party/webrtc/webrtc.gni b/src/3rdparty/chromium/third_party/webrtc/webrtc.gni
-index 8dfcc9d24..0a27fd2d6 100644
+index 82870d2db..e7782bd63 100644
 --- a/src/3rdparty/chromium/third_party/webrtc/webrtc.gni
 +++ b/src/3rdparty/chromium/third_party/webrtc/webrtc.gni
-@@ -181,6 +181,10 @@ declare_args() {
-   rtc_use_h264 =
-       proprietary_codecs && !is_android && !is_ios && !(is_win && !is_clang)
-
+@@ -192,6 +192,10 @@ declare_args() {
+   # Enable to use H265
+   rtc_use_h265 = proprietary_codecs
+ 
 +  # Allow to use OpenH264 on systems where OpenH264 cannot be installed by
 +  # default due to licensing, but can be installed later from other sources.
 +  rtc_dlopen_openh264 = false
 +
    # Enable this flag to make webrtc::Mutex be implemented by absl::Mutex.
    rtc_use_absl_mutex = false
-
+ 
 diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
-index 4153ce180..afaa9dcb1 100644
+index e7432d0c7..e7df90dfa 100644
 --- a/src/core/CMakeLists.txt
 +++ b/src/core/CMakeLists.txt
-@@ -418,6 +418,9 @@ foreach(arch ${archs})
+@@ -436,6 +436,9 @@ foreach(arch ${archs})
                  use_udev=true
                  is_cfi=false
                  use_ozone=true

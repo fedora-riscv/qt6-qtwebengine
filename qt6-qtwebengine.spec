@@ -18,7 +18,7 @@
 %global use_system_py_six 1
 %endif
 
-%global use_system_re2 1
+%global use_system_re2 0
 
 # NEON support on ARM (detected at runtime) - disable this if you are hitting
 # FTBFS due to e.g. GCC bug https://bugzilla.redhat.com/show_bug.cgi?id=1282495
@@ -50,8 +50,8 @@
 
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
-Version: 6.6.2
-Release: 3%{?dist}
+Version: 6.7.0
+Release: 1%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -127,10 +127,12 @@ BuildRequires: krb5-devel
 %if 0%{?use_system_libicu}
 BuildRequires: libicu-devel >= 68
 %endif
+BuildRequires: libatomic
 BuildRequires: libjpeg-devel
 BuildRequires: nodejs
 %if 0%{?use_system_re2}
 BuildRequires: re2-devel
+Provides: bundled(re2)
 %endif
 BuildRequires: snappy-devel
 BuildConflicts: minizip-devel
@@ -376,10 +378,12 @@ popd
 %patch50 -p1 -b .fix-build.patch
 
 ## upstream patches
-%patch100 -p1 -b .webrtc-dlopen-h264
+# FIXME: make sure it works and builds
+# patch100 -p1 -b .webrtc-dlopen-h264
 
 ## upstreamable patches
-%patch110 -p1 -b .blink-dlopen-h264
+# FIXME: make sure it works and builds
+#patch110 -p1 -b .blink-dlopen-h264
 
 # delete all "toolprefix = " lines from build/toolchain/linux/BUILD.gn, as we
 # never cross-compile in native Fedora RPMs, fixes ARM and aarch64 FTBFS
@@ -433,7 +437,7 @@ export NINJA_PATH=%{__ninja}
   -DFEATURE_webengine_kerberos:BOOL=ON \
   -DFEATURE_webengine_native_spellchecker:BOOL=OFF \
   -DFEATURE_webengine_printing_and_pdf:BOOL=ON \
-  -DFEATURE_webengine_proprietary_codecs:BOOL=ON \
+  -DFEATURE_webengine_proprietary_codecs:BOOL=OFF \
   -DFEATURE_webengine_system_icu:BOOL=%{?use_system_libicu} \
   -DFEATURE_webengine_system_libevent:BOOL=ON \
   -DFEATURE_webengine_system_ffmpeg:BOOL=ON \
@@ -505,6 +509,7 @@ done
 %{_qt6_libdir}/qt6/libexec/gn
 %{_qt6_libdir}/qt6/libexec/qwebengine_convert_dict
 %{_qt6_libdir}/qt6/libexec/QtWebEngineProcess
+%{_qt6_libdir}/qt6/libexec/webenginedriver
 %dir %{_qt6_libdir}/qt6/qml/QtWebEngine
 %{_qt6_libdir}/qt6/qml/QtWebEngine/*
 %dir %{_qt6_datadir}/resources/
@@ -662,6 +667,9 @@ done
 %endif
 
 %changelog
+* Wed Apr 03 2024 Jan Grulich <jgrulich@redhat.com> - 6.7.0-1
+- 6.7.0
+
 * Sun Mar 3 2024 Marie Loise Nolden <loise@kde.org> - 6.6.2-3
 - move qt designer plugin to -devel 
 - remove old doc package code (docs are in qt6-doc)
