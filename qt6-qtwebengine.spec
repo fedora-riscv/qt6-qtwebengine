@@ -118,6 +118,7 @@ BuildRequires: flex
 BuildRequires: gcc-c++
 %if 0%{?rhel} && 0%{?rhel} < 10
 BuildRequires: gcc-toolset-13
+BuildRequires: gcc-toolset-13-libatomic-devel
 %endif
 # gn links statically (for now)
 BuildRequires: libstdc++-static
