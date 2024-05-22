@@ -50,8 +50,8 @@
 
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
-Version: 6.7.0
-Release: 2%{?dist}
+Version: 6.7.1
+Release: 1%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -129,7 +129,7 @@ BuildRequires: libicu-devel >= 68
 %endif
 BuildRequires: libatomic
 BuildRequires: libjpeg-devel
-BuildRequires: nodejs
+BuildRequires: nodejs20
 %if 0%{?use_system_re2}
 BuildRequires: re2-devel
 Provides: bundled(re2)
@@ -219,7 +219,7 @@ Requires: qt6-qtpdf%{?_isa} = %{version}-%{release}
 
 # Of course, Chromium itself is bundled. It cannot be unbundled because it is
 # not a library, but forked (modified) application code.
-Provides: bundled(chromium) = 102.0.5005.177
+Provides: bundled(chromium) = 118.0.5993.220
 
 # Bundled in src/3rdparty/chromium/third_party:
 # Check src/3rdparty/chromium/third_party/*/README.chromium for version numbers,
@@ -309,7 +309,7 @@ Provides: bundled(nsURLParsers)
 # Bundled outside of third_party, apparently not considered as such by Chromium:
 Provides: bundled(mojo)
 # see src/3rdparty/chromium/v8/include/v8_version.h for the version number
-Provides: bundled(v8) = 10.2.154.16
+Provides: bundled(v8) = 11.8.172.18
 # bundled by v8 (src/3rdparty/chromium/v8/src/base/ieee754.cc)
 # The version number is 5.3, the last version that upstream released, years ago:
 # http://www.netlib.org/fdlibm/readme
@@ -666,6 +666,9 @@ done
 %endif
 
 %changelog
+* Wed May 22 2024 Jan Grulich <jgrulich@redhat.com> - 6.7.1-1
+- 6.7.1
+
 * Wed Apr 24 2024 Jan Grulich <jgrulich@redhat.com> - 6.7.0-2
 - Rework and enable openh264 patches
 
