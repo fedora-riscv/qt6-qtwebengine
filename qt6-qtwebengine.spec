@@ -371,18 +371,18 @@ mv pulse src/3rdparty/chromium/
 pushd src/3rdparty/chromium
 popd
 
-%patch1 -p1 -b .SIOCGSTAMP
-%patch2 -p1 -b .link-pipewire
-%patch3 -p1 -b .aarch64-new-stat
+%patch -P1 -p1 -b .SIOCGSTAMP
+%patch -P2 -p1 -b .link-pipewire
+%patch -P3 -p1 -b .aarch64-new-stat
 
-%patch50 -p1 -b .fix-build.patch
+%patch -P50 -p1 -b .fix-build.patch
 
 ## upstream patches
 
 ## upstreamable patches
-%patch110 -p1 -b .webrtc-system-openh264
-%patch111 -p1 -b .blink-system-openh264
-%patch112 -p1 -b .media-system-openh264
+%patch -P110 -p1 -b .webrtc-system-openh264
+%patch -P111 -p1 -b .blink-system-openh264
+%patch -P112 -p1 -b .media-system-openh264
 
 # delete all "toolprefix = " lines from build/toolchain/linux/BUILD.gn, as we
 # never cross-compile in native Fedora RPMs, fixes ARM and aarch64 FTBFS
