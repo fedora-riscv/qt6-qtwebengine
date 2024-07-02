@@ -129,7 +129,7 @@ BuildRequires: libicu-devel >= 68
 %endif
 BuildRequires: libatomic
 BuildRequires: libjpeg-devel
-BuildRequires: nodejs20
+BuildRequires: nodejs
 %if 0%{?use_system_re2}
 BuildRequires: re2-devel
 Provides: bundled(re2)
