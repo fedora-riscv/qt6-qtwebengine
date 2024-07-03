@@ -1,0 +1,123 @@
+Index: qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/builtins/riscv/builtins-riscv.cc
+===================================================================
+--- qtwebengine-everywhere-src-6.7.0.orig/src/3rdparty/chromium/v8/src/builtins/riscv/builtins-riscv.cc
++++ qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/builtins/riscv/builtins-riscv.cc
+@@ -1673,7 +1673,7 @@ static void Generate_InterpreterEnterByt
+   // Set the return address to the correct point in the interpreter entry
+   // trampoline.
+   Label builtin_trampoline, trampoline_loaded;
+-  Smi interpreter_entry_return_pc_offset(
++  Tagged<Smi> interpreter_entry_return_pc_offset(
+       masm->isolate()->heap()->interpreter_entry_return_pc_offset());
+   DCHECK_NE(interpreter_entry_return_pc_offset, Smi::zero());
+ 
+Index: qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/codegen/riscv/assembler-riscv-inl.h
+===================================================================
+--- qtwebengine-everywhere-src-6.7.0.orig/src/3rdparty/chromium/v8/src/codegen/riscv/assembler-riscv-inl.h
++++ qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/codegen/riscv/assembler-riscv-inl.h
+@@ -128,9 +128,9 @@ Handle<HeapObject> Assembler::compressed
+ }
+ 
+ void Assembler::deserialization_set_special_target_at(
+-    Address instruction_payload, Code code, Address target) {
++    Address instruction_payload, Tagged<Code> code, Address target) {
+   set_target_address_at(instruction_payload,
+-                        !code.is_null() ? code.constant_pool() : kNullAddress,
++                        !code.is_null() ? code->constant_pool() : kNullAddress,
+                         target);
+ }
+ 
+@@ -159,12 +159,13 @@ void Assembler::deserialization_set_targ
+   }
+ }
+ 
+-HeapObject RelocInfo::target_object(PtrComprCageBase cage_base) {
++Tagged<HeapObject> RelocInfo::target_object(PtrComprCageBase cage_base) {
+   DCHECK(IsCodeTarget(rmode_) || IsEmbeddedObjectMode(rmode_));
+   if (IsCompressedEmbeddedObject(rmode_)) {
+-    return HeapObject::cast(Object(V8HeapCompressionScheme::DecompressTagged(
+-        cage_base,
+-        Assembler::target_compressed_address_at(pc_, constant_pool_))));
++    return HeapObject::cast(
++        Tagged<Object>(V8HeapCompressionScheme::DecompressTagged(
++            cage_base,
++            Assembler::target_compressed_address_at(pc_, constant_pool_))));
+   } else {
+     return HeapObject::cast(
+         Object(Assembler::target_address_at(pc_, constant_pool_)));
+@@ -186,7 +187,7 @@ Handle<HeapObject> RelocInfo::target_obj
+   }
+ }
+ 
+-void RelocInfo::set_target_object(HeapObject target,
++void RelocInfo::set_target_object(Tagged<HeapObject> target,
+                                   ICacheFlushMode icache_flush_mode) {
+   DCHECK(IsCodeTarget(rmode_) || IsEmbeddedObjectMode(rmode_));
+   if (IsCompressedEmbeddedObject(rmode_)) {
+Index: qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/codegen/riscv/assembler-riscv.h
+===================================================================
+--- qtwebengine-everywhere-src-6.7.0.orig/src/3rdparty/chromium/v8/src/codegen/riscv/assembler-riscv.h
++++ qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/codegen/riscv/assembler-riscv.h
+@@ -288,7 +288,7 @@ class V8_EXPORT_PRIVATE Assembler : publ
+   // This is for calls and branches within generated code.  The serializer
+   // has already deserialized the lui/ori instructions etc.
+   inline static void deserialization_set_special_target_at(Address location,
+-                                                           Code code,
++                                                           Tagged<Code> code,
+                                                            Address target);
+ 
+   // Get the size of the special target encoded at 'instruction_payload'.
+Index: qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/execution/riscv/simulator-riscv.cc
+===================================================================
+--- qtwebengine-everywhere-src-6.7.0.orig/src/3rdparty/chromium/v8/src/execution/riscv/simulator-riscv.cc
++++ qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/execution/riscv/simulator-riscv.cc
+@@ -1889,7 +1889,7 @@ void RiscvDebugger::Debug() {
+           sreg_t value;
+           StdoutStream os;
+           if (GetValue(arg1, &value)) {
+-            Object obj(value);
++            Tagged<Object> obj(value);
+             os << arg1 << ": \n";
+ #ifdef DEBUG
+             Print(obj, os);
+@@ -1938,7 +1938,7 @@ void RiscvDebugger::Debug() {
+           PrintF("  0x%012" PRIxPTR " :  0x%016" REGIx_FORMAT
+                  "  %14" REGId_FORMAT " ",
+                  reinterpret_cast<intptr_t>(cur), *cur, *cur);
+-          Object obj(*cur);
++          Tagged<Object> obj(*cur);
+           Heap* current_heap = sim_->isolate_->heap();
+           if (IsSmi(obj) ||
+               IsValidHeapObject(current_heap, HeapObject::cast(obj))) {
+@@ -4815,7 +4815,7 @@ bool Simulator::DecodeRvvVS() {
+ Builtin Simulator::LookUp(Address pc) {
+   for (Builtin builtin = Builtins::kFirst; builtin <= Builtins::kLast;
+        ++builtin) {
+-    if (builtins_.code(builtin).contains(isolate_, pc)) return builtin;
++    if (builtins_.code(builtin)->contains(isolate_, pc)) return builtin;
+   }
+   return Builtin::kNoBuiltinId;
+ }
+@@ -4832,7 +4832,7 @@ void Simulator::DecodeRVIType() {
+         if (builtin != Builtin::kNoBuiltinId) {
+           auto code = builtins_.code(builtin);
+           if ((rs1_reg() != ra || imm12() != 0)) {
+-            if ((Address)get_pc() == code.instruction_start()) {
++            if ((Address)get_pc() == code->instruction_start()) {
+               sreg_t arg0 = get_register(a0);
+               sreg_t arg1 = get_register(a1);
+               sreg_t arg2 = get_register(a2);
+Index: qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/regexp/riscv/regexp-macro-assembler-riscv.cc
+===================================================================
+--- qtwebengine-everywhere-src-6.7.0.orig/src/3rdparty/chromium/v8/src/regexp/riscv/regexp-macro-assembler-riscv.cc
++++ qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/v8/src/regexp/riscv/regexp-macro-assembler-riscv.cc
+@@ -1219,7 +1219,7 @@ int64_t RegExpMacroAssemblerRISCV::Check
+                                                         Address raw_code,
+                                                         Address re_frame,
+                                                         uintptr_t extra_space) {
+-  InstructionStream re_code = InstructionStream::cast(Object(raw_code));
++  Tagged<InstructionStream> re_code = InstructionStream::cast(Object(raw_code));
+   return NativeRegExpMacroAssembler::CheckStackGuardState(
+       frame_entry<Isolate*>(re_frame, kIsolateOffset),
+       static_cast<int>(frame_entry<int64_t>(re_frame, kStartIndexOffset)),
+

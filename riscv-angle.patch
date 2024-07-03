@@ -1,0 +1,14 @@
+Index: qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/third_party/angle/src/common/platform.h
+===================================================================
+--- qtwebengine-everywhere-src-6.7.0.orig/src/3rdparty/chromium/third_party/angle/src/common/platform.h
++++ qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/third_party/angle/src/common/platform.h
+@@ -118,7 +118,7 @@
+ #endif
+ 
+ // Mips and arm devices need to include stddef for size_t.
+-#if defined(__mips__) || defined(__arm__) || defined(__aarch64__)
++#if defined(__mips__) || defined(__arm__) || defined(__aarch64__) || defined(__riscv)
+ #    include <stddef.h>
+ #endif
+ 
+

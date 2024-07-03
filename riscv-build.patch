@@ -1,0 +1,14 @@
+Index: qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/build/config/rust.gni
+===================================================================
+--- qtwebengine-everywhere-src-6.7.0.orig/src/3rdparty/chromium/build/config/rust.gni
++++ qtwebengine-everywhere-src-6.7.0/src/3rdparty/chromium/build/config/rust.gni
+@@ -197,6 +197,8 @@ if (is_linux || is_chromeos) {
+     } else {
+       rust_abi_target = "arm-unknown-linux-gnueabi" + float_suffix
+     }
++  } else if (current_cpu == "riscv64") {
++    rust_abi_target = "riscv64gc-unknown-linux-gnu"
+   } else {
+     # Best guess for other future platforms.
+     rust_abi_target = current_cpu + "-unknown-linux-gnu"
+

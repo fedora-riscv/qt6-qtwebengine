@@ -51,7 +51,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.7.1
-Release: 1%{?dist}
+Release: 1.rv64%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -79,6 +79,16 @@ Patch2:  qtwebengine-link-pipewire.patch
 # Fix/workaround FTBFS on aarch64 with newer glibc
 Patch3: qtwebengine-aarch64-new-stat.patch
 
+# riscv64 patches
+Patch10: riscv-base.patch
+Patch11: riscv-build.patch
+Patch12: riscv-sandbox.patch
+Patch13: riscv-angle.patch
+Patch14: riscv-dav1d.patch
+Patch15: riscv-libgav1.patch
+Patch16: riscv-vulkan.patch
+Patch17: riscv-v8.patch
+
 # FTBS warning: elaborated-type-specifier for a scoped enum must not
 # use the 'class' keyword
 Patch50: qtwebengine-fix-build.patch
@@ -93,7 +103,7 @@ Patch112: qtwebengine-media-system-openh264.patch
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 # FIXME use/update qt6_qtwebengine_arches
 # 32-bit arches not supported (https://bugreports.qt.io/browse/QTBUG-102143)
-ExclusiveArch: aarch64 x86_64
+ExclusiveArch: aarch64 x86_64 riscv64
 
 BuildRequires: cmake
 BuildRequires: make
@@ -375,6 +385,16 @@ popd
 %patch -P2 -p1 -b .link-pipewire
 %patch -P3 -p1 -b .aarch64-new-stat
 
+# riscv64 patches
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
+%patch15 -p1
+%patch16 -p1
+%patch17 -p1
+
 %patch -P50 -p1 -b .fix-build.patch
 
 ## upstream patches
@@ -442,6 +462,9 @@ export NINJA_PATH=%{__ninja}
   -DFEATURE_webengine_system_ffmpeg:BOOL=ON \
   -DFEATURE_webengine_webrtc:BOOL=ON \
   -DFEATURE_webengine_webrtc_pipewire:BOOL=ON \
+%ifarch riscv64
+  -DFEATURE_webengine_vaapi=OFF \
+%endif
   -DQT_BUILD_EXAMPLES:BOOL=%{?examples:ON}%{!?examples:OFF} \
   -DQT_INSTALL_EXAMPLES_SOURCES=%{?examples:ON}%{!?examples:OFF}
 

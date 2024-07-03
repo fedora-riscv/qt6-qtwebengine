@@ -1,0 +1,12 @@
+Index: qtwebengine-everywhere-src-6.6.1/src/3rdparty/chromium/third_party/libgav1/options.gni
+===================================================================
+--- qtwebengine-everywhere-src-6.6.1.orig/src/3rdparty/chromium/third_party/libgav1/options.gni
++++ qtwebengine-everywhere-src-6.6.1/src/3rdparty/chromium/third_party/libgav1/options.gni
+@@ -9,5 +9,5 @@ declare_args() {
+   use_libgav1_parser =
+       (is_chromeos || is_linux || is_win) &&
+       (target_cpu == "x86" || target_cpu == "x64" || target_cpu == "arm" ||
+-       target_cpu == "arm64" || target_cpu == "ppc64")
++       target_cpu == "arm64" || target_cpu == "ppc64" || target_cpu == "riscv64")
+ }
+
