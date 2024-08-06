@@ -51,7 +51,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.7.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -84,6 +84,7 @@ Patch3: qtwebengine-aarch64-new-stat.patch
 Patch50: qtwebengine-fix-build.patch
 
 ## Upstream patches:
+Patch80:  qtwebengine-fix-building-with-system-ffmpeg.patch
 
 ## Upstreamable patches:
 Patch110: qtwebengine-webrtc-system-openh264.patch
@@ -374,6 +375,8 @@ popd
 %patch -P1 -p1 -b .SIOCGSTAMP
 %patch -P2 -p1 -b .link-pipewire
 %patch -P3 -p1 -b .aarch64-new-stat
+
+%patch -P80 -p1 -b .fix-building-with-system-ffmpeg
 
 %patch -P50 -p1 -b .fix-build.patch
 
@@ -666,6 +669,9 @@ done
 %endif
 
 %changelog
+* Mon Aug 05 2024 Jan Grulich <jgrulich@redhat.com> - 6.7.2-3
+- Fix building with system ffmpeg
+
 * Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 6.7.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
