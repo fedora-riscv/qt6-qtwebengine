@@ -51,7 +51,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.7.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -669,6 +669,9 @@ done
 %endif
 
 %changelog
+* Mon Sep 23 2024 Fabio Valentini <decathorpe@gmail.com> - 6.7.2-4
+- Rebuild for ffmpeg 7
+
 * Mon Aug 05 2024 Jan Grulich <jgrulich@redhat.com> - 6.7.2-3
 - Fix building with system ffmpeg
 
