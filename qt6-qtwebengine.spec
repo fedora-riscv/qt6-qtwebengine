@@ -380,7 +380,7 @@ popd
 %patch -P50 -p1 -b .fix-build.patch
 
 ## upstream patches
-%if 0%{?fedora} && 0%{?fedora} >= 41
+%if 0%{?fedora} >= 41 || 0%{?rhel} >= 10
 %patch -P80 -p1 -b .fix-building-with-system-ffmpeg
 %endif
 
