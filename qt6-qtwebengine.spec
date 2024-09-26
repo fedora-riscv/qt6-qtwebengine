@@ -84,6 +84,7 @@ Patch3: qtwebengine-aarch64-new-stat.patch
 Patch50: qtwebengine-fix-build.patch
 
 ## Upstream patches:
+# Fixes build with FFmpeg 7
 Patch80:  qtwebengine-fix-building-with-system-ffmpeg.patch
 
 ## Upstreamable patches:
@@ -376,11 +377,12 @@ popd
 %patch -P2 -p1 -b .link-pipewire
 %patch -P3 -p1 -b .aarch64-new-stat
 
-%patch -P80 -p1 -b .fix-building-with-system-ffmpeg
-
 %patch -P50 -p1 -b .fix-build.patch
 
 ## upstream patches
+%if 0%{?fedora} && 0%{?fedora} >= 41
+%patch -P80 -p1 -b .fix-building-with-system-ffmpeg
+%endif
 
 ## upstreamable patches
 %patch -P110 -p1 -b .webrtc-system-openh264
