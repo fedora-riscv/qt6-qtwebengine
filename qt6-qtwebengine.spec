@@ -181,7 +181,9 @@ BuildRequires: pkgconfig(xkbcommon)
 BuildRequires: pkgconfig(xkbfile)
 BuildRequires: pkgconfig(xrandr)
 BuildRequires: pkgconfig(xrender)
+%if 0%{?fedora} || 0%{?rhel} < 10
 BuildRequires: pkgconfig(xscrnsaver)
+%endif
 BuildRequires: pkgconfig(xshmfence)
 BuildRequires: pkgconfig(xtst)
 BuildRequires: pkgconfig(zlib)
