@@ -1,5 +1,5 @@
 diff --git a/src/3rdparty/chromium/base/debug/profiler.h b/src/3rdparty/chromium/base/debug/profiler.h
-index 035affc7c..d8e1a5346 100644
+index 035affc..d8e1a53 100644
 --- a/src/3rdparty/chromium/base/debug/profiler.h
 +++ b/src/3rdparty/chromium/base/debug/profiler.h
 @@ -5,6 +5,7 @@
@@ -11,7 +11,7 @@ index 035affc7c..d8e1a5346 100644
  #include <stdint.h>
  
 diff --git a/src/3rdparty/chromium/cc/trees/target_property.cc b/src/3rdparty/chromium/cc/trees/target_property.cc
-index 7d73467a9..be4febd9a 100644
+index 7d73467..be4febd 100644
 --- a/src/3rdparty/chromium/cc/trees/target_property.cc
 +++ b/src/3rdparty/chromium/cc/trees/target_property.cc
 @@ -8,6 +8,8 @@
@@ -24,7 +24,7 @@ index 7d73467a9..be4febd9a 100644
  
  static_assert(TargetProperty::LAST_TARGET_PROPERTY <
 diff --git a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
-index c62a00ee0..af54520b7 100644
+index c62a00e..af54520 100644
 --- a/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 +++ b/src/3rdparty/chromium/device/base/synchronization/one_writer_seqlock.cc
 @@ -6,6 +6,8 @@
@@ -37,7 +37,7 @@ index c62a00ee0..af54520b7 100644
  
  OneWriterSeqLock::OneWriterSeqLock() : sequence_(0) {}
 diff --git a/src/3rdparty/chromium/extensions/common/constants.h b/src/3rdparty/chromium/extensions/common/constants.h
-index adbcfa540..5923bd2fe 100644
+index b5823c7..c152482 100644
 --- a/src/3rdparty/chromium/extensions/common/constants.h
 +++ b/src/3rdparty/chromium/extensions/common/constants.h
 @@ -13,6 +13,8 @@
@@ -50,7 +50,7 @@ index adbcfa540..5923bd2fe 100644
  
  // Scheme we serve extension content from.
 diff --git a/src/3rdparty/chromium/gpu/config/gpu_util.h b/src/3rdparty/chromium/gpu/config/gpu_util.h
-index 8edbfbe7d..467ebd65e 100644
+index 8edbfbe..467ebd6 100644
 --- a/src/3rdparty/chromium/gpu/config/gpu_util.h
 +++ b/src/3rdparty/chromium/gpu/config/gpu_util.h
 @@ -5,6 +5,8 @@
@@ -63,11 +63,11 @@ index 8edbfbe7d..467ebd65e 100644
  #include "gpu/config/gpu_feature_info.h"
  #include "gpu/gpu_export.h"
 diff --git a/src/3rdparty/chromium/net/base/parse_number.h b/src/3rdparty/chromium/net/base/parse_number.h
-index f923b18a7..8f3c6ef78 100644
+index f70619a..5c4eee7 100644
 --- a/src/3rdparty/chromium/net/base/parse_number.h
 +++ b/src/3rdparty/chromium/net/base/parse_number.h
 @@ -10,6 +10,8 @@
- #include "base/strings/string_piece.h"
+ 
  #include "net/base/net_export.h"
  
 +#include <cstdint>
@@ -76,7 +76,7 @@ index f923b18a7..8f3c6ef78 100644
  // network protocols.
  //
 diff --git a/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h b/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
-index 7c0dcdecb..97054d476 100644
+index 7c0dcde..97054d4 100644
 --- a/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
 +++ b/src/3rdparty/chromium/ppapi/utility/completion_callback_factory_thread_traits.h
 @@ -38,6 +38,10 @@ namespace pp {
@@ -100,10 +100,10 @@ index 7c0dcdecb..97054d476 100644
  
  /// The non-thread-safe version of thread traits. Using this class as the
 diff --git a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h b/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
-index 6cec3b6b8..541bba5b1 100644
+index a65ea9a..ba967c0 100644
 --- a/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
 +++ b/src/3rdparty/chromium/third_party/dawn/src/dawn/native/CacheKey.h
-@@ -15,6 +15,7 @@
+@@ -28,6 +28,7 @@
  #ifndef SRC_DAWN_NATIVE_CACHEKEY_H_
  #define SRC_DAWN_NATIVE_CACHEKEY_H_
  
@@ -112,19 +112,19 @@ index 6cec3b6b8..541bba5b1 100644
  
  #include "dawn/native/stream/ByteVectorSink.h"
 diff --git a/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc b/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
-index e171db6c7..dfbd126b4 100644
+index 6fa2e88..6b942ab 100644
 --- a/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
 +++ b/src/3rdparty/chromium/third_party/libgav1/src/src/utils/threadpool.cc
-@@ -30,6 +30,7 @@
- #include <cstddef>
+@@ -31,6 +31,7 @@
  #include <cstdint>
+ #include <cstdio>
  #include <cstring>
 +#include <cstdio>
  #include <new>
  #include <utility>
  
 diff --git a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
-index cc2c3a2b3..8eb694e73 100644
+index cc2c3a2..8eb694e 100644
 --- a/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
 +++ b/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/importers/proto/proto_importer_module.h
 @@ -22,6 +22,8 @@
@@ -137,12 +137,12 @@ index cc2c3a2b3..8eb694e73 100644
  
  namespace protos {
 diff --git a/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp b/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
-index 0101632c5..3f04a2dd2 100644
+index ae6a412..5fe0370 100644
 --- a/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
 +++ b/src/3rdparty/chromium/third_party/skia/src/utils/SkParseColor.cpp
 @@ -15,6 +15,10 @@
+ #include <cstring>
  #include <iterator>
- #include <string>
  
 +#include <string.h>
 +#include <algorithm>
@@ -152,12 +152,12 @@ index 0101632c5..3f04a2dd2 100644
      "aliceblue",
      "antiquewhite",
 diff --git a/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h b/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
-index b26de34cc..caa0df9f9 100644
+index 0bbfeed..91f19f8 100644
 --- a/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
 +++ b/src/3rdparty/chromium/third_party/vulkan_memory_allocator/include/vk_mem_alloc.h
-@@ -105,6 +105,8 @@ Documentation of all members: vk_mem_alloc.h
- - [Source repository on GitHub](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator)
+@@ -122,6 +122,8 @@ See documentation chapter: \ref statistics.
  */
+ 
  
 +#include <cstdio>
 +
@@ -165,7 +165,7 @@ index b26de34cc..caa0df9f9 100644
  extern "C" {
  #endif
 diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h b/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h
-index ab52508c2..050229a2f 100644
+index ab52508..050229a 100644
 --- a/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h
 +++ b/src/3rdparty/chromium/third_party/webrtc/modules/portal/xdg_session_details.h
 @@ -13,6 +13,7 @@
@@ -177,7 +177,7 @@ index ab52508c2..050229a2f 100644
  
  namespace webrtc {
 diff --git a/src/3rdparty/chromium/ui/events/gesture_event_details.h b/src/3rdparty/chromium/ui/events/gesture_event_details.h
-index bdf840619..68f473f27 100644
+index 857da97..e48e24d 100644
 --- a/src/3rdparty/chromium/ui/events/gesture_event_details.h
 +++ b/src/3rdparty/chromium/ui/events/gesture_event_details.h
 @@ -5,6 +5,7 @@
@@ -189,7 +189,7 @@ index bdf840619..68f473f27 100644
  
  #include "base/check_op.h"
 diff --git a/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h b/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
-index d32766283..18b8a85e1 100644
+index 7239ed5..975b88c 100644
 --- a/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
 +++ b/src/3rdparty/chromium/ui/gfx/geometry/linear_gradient.h
 @@ -7,6 +7,7 @@
@@ -201,7 +201,7 @@ index d32766283..18b8a85e1 100644
  #include <cstddef>
  #include <cstdint>
 diff --git a/src/3rdparty/chromium/v8/src/base/macros.h b/src/3rdparty/chromium/v8/src/base/macros.h
-index f81258363..ec7d67550 100644
+index 93a99ec..f6ddfe7 100644
 --- a/src/3rdparty/chromium/v8/src/base/macros.h
 +++ b/src/3rdparty/chromium/v8/src/base/macros.h
 @@ -5,6 +5,7 @@
@@ -213,7 +213,7 @@ index f81258363..ec7d67550 100644
  #include <type_traits>
  
 diff --git a/src/core/browsing_data_remover_delegate_qt.h b/src/core/browsing_data_remover_delegate_qt.h
-index d33af4acb..ce864b6bd 100644
+index d33af4a..ce864b6 100644
 --- a/src/core/browsing_data_remover_delegate_qt.h
 +++ b/src/core/browsing_data_remover_delegate_qt.h
 @@ -8,6 +8,8 @@
