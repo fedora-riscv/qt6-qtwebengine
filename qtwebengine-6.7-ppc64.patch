@@ -1,0 +1,12 @@
+diff -up qtwebengine-everywhere-src-6.7.2/cmake/Functions.cmake.orig qtwebengine-everywhere-src-6.7.2/cmake/Functions.cmake
+--- qtwebengine-everywhere-src-6.7.2/cmake/Functions.cmake.orig	2024-09-19 16:19:27.740234419 +0200
++++ qtwebengine-everywhere-src-6.7.2/cmake/Functions.cmake	2024-09-19 16:28:30.744377245 +0200
+@@ -635,6 +635,8 @@ function(get_gn_arch result arch)
+         set(${result} "mips64el" PARENT_SCOPE)
+     elseif(arch STREQUAL "riscv64")
+         set(${result} "riscv64" PARENT_SCOPE)
++    elseif(arch STREQUAL "power64")
++        set(${result} "ppc64" PARENT_SCOPE)
+     else()
+         message(FATAL_ERROR "Unknown architecture: ${arch}")
+     endif()

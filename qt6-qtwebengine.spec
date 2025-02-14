@@ -92,10 +92,14 @@ Patch110: qtwebengine-webrtc-system-openh264.patch
 Patch111: qtwebengine-blink-system-openh264.patch
 Patch112: qtwebengine-media-system-openh264.patch
 
+## ppc64le port
+Patch200: qtwebengine-6.7-ppc64.patch
+Patch201: qtwebengine-chromium-ppc64.patch
+
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 # FIXME use/update qt6_qtwebengine_arches
 # 32-bit arches not supported (https://bugreports.qt.io/browse/QTBUG-102143)
-ExclusiveArch: aarch64 x86_64
+ExclusiveArch: aarch64 x86_64 ppc64le
 
 BuildRequires: cmake
 BuildRequires: make
@@ -390,6 +394,13 @@ popd
 %patch -P110 -p1 -b .webrtc-system-openh264
 %patch -P111 -p1 -b .blink-system-openh264
 %patch -P112 -p1 -b .media-system-openh264
+
+# ppc64le support
+%patch -P200 -p1
+pushd src/3rdparty/chromium
+%patch -P201 -p1
+popd
+
 
 # delete all "toolprefix = " lines from build/toolchain/linux/BUILD.gn, as we
 # never cross-compile in native Fedora RPMs, fixes ARM and aarch64 FTBFS
