@@ -1,9 +1,9 @@
 diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
-index fe4f2c3f1..729d4d3e9 100644
+index cc992b4d2..ae1fba849 100644
 --- a/src/core/CMakeLists.txt
 +++ b/src/core/CMakeLists.txt
-@@ -544,6 +544,10 @@ foreach(arch ${archs})
-                     )
+@@ -566,6 +566,10 @@ foreach(arch ${archs})
+                     list(APPEND gnArgArg libyuv_use_sve=false)
                  endif()
              endif()
 +            if(cpu MATCHES "arm.*")
@@ -12,3 +12,4 @@ index fe4f2c3f1..729d4d3e9 100644
 +            endif()
              unset(cpu)
          endif()
+ 

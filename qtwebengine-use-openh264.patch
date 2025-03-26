@@ -1,9 +1,9 @@
 diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
-index de5222645..eb27e8b4e 100644
+index cc992b4..7b6326f 100644
 --- a/src/core/CMakeLists.txt
 +++ b/src/core/CMakeLists.txt
-@@ -448,6 +448,8 @@ foreach(arch ${archs})
-                 use_udev=true
+@@ -449,6 +449,8 @@ foreach(arch ${archs})
+                 use_bluez=false
                  is_cfi=false
                  use_ozone=true
 +                media_use_openh264=true

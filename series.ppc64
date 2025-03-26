@@ -1,4 +1,4 @@
-# from chromium-122.0.6261.128 patchset on quickbuild.io
+# from chromium-130 branch at https://gitlab.raptorengineering.com/raptor-engineering-public/chromium/openpower-patches.git
 # do following edits to the patches:
 # - third_party/0001-Add-PPC64-support-for-boringssl.patch
 #   - remove third_party/boringssl/src/crypto/test/abi_test.h
@@ -34,11 +34,9 @@ ppc64le/third_party/0002-third_party-lss-kernel-structs.patch
 ppc64le/libaom/0001-Add-ppc64-target-to-libaom.patch
 ppc64le/libaom/0001-Add-pregenerated-config-for-libaom-on-ppc64.patch
 ppc64le/third_party/0002-third_party-libvpx-Remove-bad-ppc64-config.patch
-ppc64le/third_party/0002-third-party-boringssl-add-generated-files.patch
+ppc64le/third_party/0002-Add-PPC64-generated-files-for-boringssl.patch
 ppc64le/third_party/0003-third_party-libvpx-Add-ppc64-generated-config.patch
 ppc64le/crashpad/0001-Implement-support-for-PPC64-on-Linux.patch
 ppc64le/fixes/fix-partition-alloc-compile.patch
-ppc64le/third_party/0001-Fix-highway-ppc-hwcap.patch
 ppc64le/third_party/use-sysconf-page-size-on-ppc64.patch
-ppc64le/third_party/dawn-fix-typos.patch
 ppc64le/third_party/dawn-fix-ppc64le-detection.patch
