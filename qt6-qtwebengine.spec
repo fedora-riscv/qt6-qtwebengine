@@ -221,8 +221,9 @@ BuildRequires: pkgconfig(libavcodec)
 BuildRequires: pkgconfig(libavformat)
 BuildRequires: pkgconfig(libavutil)
 BuildRequires: pkgconfig(openh264)
+%if 0%{?fedora} && 0%{?fedora} >= 39
 BuildRequires: pkgconfig(libva)
-
+%endif
 %if 0%{?fedora} && 0%{?fedora} >= 39
 BuildRequires: python3-zombie-imp
 %endif
