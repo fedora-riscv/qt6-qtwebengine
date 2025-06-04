@@ -1,8 +1,8 @@
 diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
-index cc992b4d2..ae1fba849 100644
+index d5e9b715e..af4c046c4 100644
 --- a/src/core/CMakeLists.txt
 +++ b/src/core/CMakeLists.txt
-@@ -566,6 +566,10 @@ foreach(arch ${archs})
+@@ -570,6 +570,10 @@ foreach(arch ${archs})
                      list(APPEND gnArgArg libyuv_use_sve=false)
                  endif()
              endif()
