@@ -41,3 +41,4 @@ ppc64le/fixes/fix-partition-alloc-compile.patch
 ppc64le/third_party/use-sysconf-page-size-on-ppc64.patch
 ppc64le/third_party/dawn-fix-ppc64le-detection.patch
 ppc64le/workarounds/HACK-debian-clang-disable-skia-musttail.patch
+ppc64le/core/add-ppc64-pthread-stack-size.patch
