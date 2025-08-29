@@ -591,41 +591,6 @@ Index: chromium-130.0.6723.44/sandbox/linux/seccomp-bpf-helpers/syscall_sets.cc
      case __NR__llseek:
  #endif
  #if !defined(__aarch64__)
-@@ -604,26 +619,28 @@ bool SyscallSets::IsAllowedGeneralIo(int
-     case __NR_readv:
-     case __NR_pread64:
- #if defined(__arm__) || \
--    (defined(ARCH_CPU_MIPS_FAMILY) && defined(ARCH_CPU_32_BITS))
-+    (defined(ARCH_CPU_MIPS_FAMILY) && defined(ARCH_CPU_32_BITS)) || \
-+    defined(__powerpc64__)
-     case __NR_recv:
- #endif
- #if defined(__x86_64__) || defined(__arm__) || defined(__mips__) || \
--    defined(__aarch64__)
-+    defined(__aarch64__) || defined(__powerpc64__)
-     case __NR_recvfrom:  // Could specify source.
-     case __NR_recvmsg:   // Could specify source.
- #endif
--#if defined(__i386__) || defined(__x86_64__)
-+#if defined(__i386__) || defined(__x86_64__) || defined(__powerpc64__)
-     case __NR_select:
- #endif
--#if defined(__i386__) || defined(__arm__) || defined(__mips__)
-+#if defined(__i386__) || defined(__arm__) || defined(__mips__) || defined(__powerpc64__)
-     case __NR__newselect:
- #endif
- #if defined(__arm__) || \
--    (defined(ARCH_CPU_MIPS_FAMILY) && defined(ARCH_CPU_32_BITS))
-+    (defined(ARCH_CPU_MIPS_FAMILY) && defined(ARCH_CPU_32_BITS)) || \
-+    defined(__powerpc64__)
-     case __NR_send:
- #endif
- #if defined(__x86_64__) || defined(__arm__) || defined(__mips__) || \
--    defined(__aarch64__)
-+    defined(__aarch64__) || defined(__powerpc64__)
-     case __NR_sendmsg:  // Could specify destination.
-     case __NR_sendto:   // Could specify destination.
- #endif
 @@ -679,7 +696,8 @@ bool SyscallSets::IsAllowedBasicSchedule
        return true;
      case __NR_getpriority:
@@ -30756,3 +30721,45 @@ Index: chromium-130.0.6723.44/third_party/skia/src/core/SkRasterPipeline.h
  #else
  #define PTHREAD_STACK_MIN_CONST \
    (__builtin_constant_p(PTHREAD_STACK_MIN) ? PTHREAD_STACK_MIN : 16384)
+diff -up chromium/sandbox/linux/seccomp-bpf-helpers/syscall_sets.cc.orig chromium/sandbox/linux/seccomp-bpf-helpers/syscall_sets.cc
+--- chromium/sandbox/linux/seccomp-bpf-helpers/syscall_sets.cc.orig	2025-08-29 10:24:11.982676966 +0200
++++ chromium/sandbox/linux/seccomp-bpf-helpers/syscall_sets.cc	2025-08-29 10:26:04.859133616 +0200
+@@ -621,18 +621,19 @@ bool SyscallSets::IsAllowedGeneralIo(int
+     case __NR_readv:
+     case __NR_pread64:
+ #if defined(__arm__) || \
+-    (defined(ARCH_CPU_MIPS_FAMILY) && defined(ARCH_CPU_32_BITS))
++    (defined(ARCH_CPU_MIPS_FAMILY) && defined(ARCH_CPU_32_BITS)) || \
++    defined(__powerpc64__)
+     case __NR_recv:
+ #endif
+ #if defined(__x86_64__) || defined(__arm__) || defined(__mips__) || \
+-    defined(__aarch64__)
++    defined(__aarch64__) || defined(__powerpc64__)
+     case __NR_recvfrom:  // Could specify source.
+     case __NR_recvmsg:   // Could specify source.
+ #endif
+-#if defined(__i386__) || defined(__x86_64__)
++#if defined(__i386__) || defined(__x86_64__) || defined(__powerpc64__)
+     case __NR_select:
+ #endif
+-#if defined(__i386__) || defined(__arm__) || defined(__mips__)
++#if defined(__i386__) || defined(__arm__) || defined(__mips__) || defined(__powerpc64__)
+     case __NR__newselect:
+ #endif
+     case __NR_write:
+@@ -649,11 +650,12 @@ bool SyscallSets::IsAllowedGeneralIo(int
+ #endif
+ // send* syscalls need their flags filtered.
+ #if defined(__arm__) || \
+-    (defined(ARCH_CPU_MIPS_FAMILY) && defined(ARCH_CPU_32_BITS))
++    (defined(ARCH_CPU_MIPS_FAMILY) && defined(ARCH_CPU_32_BITS)) || \
++    defined(__powerpc64__)
+     case __NR_send:
+ #endif
+ #if defined(__i386__) || defined(__x86_64__) || defined(__arm__) || \
+-    defined(__mips__) || defined(__aarch64__)
++    defined(__mips__) || defined(__aarch64__) || defined(__powerpc64__)
+     case __NR_sendmsg:  // Could specify destination.
+     case __NR_sendto:   // Could specify destination.
+ #endif
