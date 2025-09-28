@@ -141,8 +141,8 @@ Patch80:  qtwebengine-fix-arm-build.patch
 ## ppc64le port
 Patch200: qtwebengine-6.9-ppc64.patch
 Patch201: qtwebengine-chromium-ppc64.patch
-# https://src.fedoraproject.org/rpms/chromium/c/c675db4ac0623d2d97344be0b3b2d9f1ac931446?branch=rawhide
-Patch202: chromium-130-size-assertions.patch
+# https://github.com/google/highway/commit/dcc0ca1cd4245ecff9e5ba50818e47d5e2ccf699
+Patch202: qtwebengine-chromium-ppc64-highway.patch
 
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 # FIXME use/update qt6_qtwebengine_arches
@@ -495,7 +495,9 @@ popd
 %patch -P200 -p1
 pushd src/3rdparty/chromium
 %patch -P201 -p1
+pushd third_party/highway/src
 %patch -P202 -p1
+popd
 popd
 
 
