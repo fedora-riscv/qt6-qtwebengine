@@ -88,7 +88,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.10.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -845,6 +845,9 @@ done
 %endif
 
 %changelog
+* Tue Oct 07 2025 Jan Grulich <jgrulich@redhat.com> - 6.10.0-2
+- 6.10.0
+
 * Thu Sep 25 2025 Jan Grulich <jgrulich@redhat.com> - 6.10.0~rc-1
 - 6.10.0 RC
 
@@ -926,7 +929,7 @@ done
 - 6.7.0
 
 * Sun Mar 3 2024 Marie Loise Nolden <loise@kde.org> - 6.6.2-3
-- move qt designer plugin to -devel 
+- move qt designer plugin to -devel
 - remove old doc package code (docs are in qt6-doc)
 
 * Mon Feb 19 2024 Jan Grulich <jgrulich@redhat.com> - 6.6.2-2
