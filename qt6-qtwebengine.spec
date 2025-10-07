@@ -126,11 +126,6 @@ Patch3:   qtwebengine-aarch64-new-stat.patch
 # Enable OpenH264
 Patch4:   qtwebengine-use-openh264.patch
 
-# https://bugreports.qt.io/browse/QTBUG-139424
-# Revert commit bcee2dbf412cc655c1b467091b581c696d234e3f
-# See also https://gitlab.archlinux.org/archlinux/packaging/packages/qt6-webengine/-/commit/74473e03e9d77895d22659914aa4ae91324a1f0a
-Patch51:  qtwebengine-revert-create-eglimage.patch
-
 ## Upstream patches:
 # https://bugreports.qt.io/browse/QTBUG-129985
 Patch80:  qtwebengine-fix-arm-build.patch
@@ -481,8 +476,6 @@ popd
 %patch -P2 -p1 -b .link-pipewire
 %patch -P3 -p1 -b .aarch64-new-stat
 %patch -P4 -p1 -b .use-openh264
-
-%patch -P51 -p1 -b .eglimage
 
 ## upstream patches
 %patch -P80 -p1 -b .fix-arm-build
