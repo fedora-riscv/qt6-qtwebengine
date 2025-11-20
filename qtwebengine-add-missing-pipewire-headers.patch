@@ -1,29 +1,5 @@
-diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/pipewire_session.cc b/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/pipewire_session.cc
-index cfe5350..4a28ebd 100644
---- a/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/pipewire_session.cc
-+++ b/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/pipewire_session.cc
-@@ -10,11 +10,18 @@
- 
- #include "modules/video_capture/linux/pipewire_session.h"
- 
-+#include <pipewire/pipewire.h>
- #include <spa/monitor/device.h>
- #include <spa/param/format-utils.h>
- #include <spa/param/format.h>
-+#include <spa/param/param.h>
- #include <spa/param/video/raw.h>
--#include <spa/pod/parser.h>
-+#include <spa/pod/iter.h>
-+#include <spa/pod/pod.h>
-+#include <spa/utils/defs.h>
-+#include <spa/utils/dict.h>
-+#include <spa/utils/hook.h>
-+#include <spa/utils/type.h>
- 
- #include <algorithm>
- 
 diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/pipewire_session.h b/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/pipewire_session.h
-index 84273ea..825bb00 100644
+index 84273ea695..825bb0000a 100644
 --- a/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/pipewire_session.h
 +++ b/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/pipewire_session.h
 @@ -11,8 +11,10 @@
@@ -39,7 +15,7 @@ index 84273ea..825bb00 100644
  #include <deque>
  #include <string>
 diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/video_capture_pipewire.cc b/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/video_capture_pipewire.cc
-index f6cd57a..b9c579d 100644
+index f6cd57ac36..b9c579d2e3 100644
 --- a/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/video_capture_pipewire.cc
 +++ b/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/video_capture_pipewire.cc
 @@ -10,10 +10,21 @@
@@ -65,7 +41,7 @@ index f6cd57a..b9c579d 100644
  #include <vector>
  
 diff --git a/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/video_capture_pipewire.h b/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/video_capture_pipewire.h
-index 789f203..7c1f939 100644
+index 789f2034d3..7c1f9390fc 100644
 --- a/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/video_capture_pipewire.h
 +++ b/src/3rdparty/chromium/third_party/webrtc/modules/video_capture/linux/video_capture_pipewire.h
 @@ -11,6 +11,10 @@
