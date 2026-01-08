@@ -88,7 +88,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.10.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -133,6 +133,8 @@ Patch5:   qtwebengine-chromium-141-glibc-2.42-SYS_SECCOMP.patch
 ## Upstream patches:
 # https://bugreports.qt.io/browse/QTBUG-129985
 Patch80:  qtwebengine-fix-arm-build.patch
+# https://codereview.qt-project.org/c/qt/qtwebengine/+/702597
+Patch81:  qtwebengine-move-gpu-info-logging-to-gpu-thread.patch
 
 ## Upstreamable patches:
 Patch100: qtwebengine-add-missing-pipewire-headers.patch
@@ -847,6 +849,9 @@ done
 %endif
 
 %changelog
+* Thu Jan 08 2026 Jan Grulich <jgrulich@redhat.com> - 6.10.1-3
+- Move GPU info logging into the GPU thread
+
 * Fri Nov 21 2025 Jan Grulich <jgrulich@redhat.com> - 6.10.1-2
 - Rebuild for Koji infra issue
 
