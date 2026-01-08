@@ -138,6 +138,7 @@ Patch81:  qtwebengine-move-gpu-info-logging-to-gpu-thread.patch
 
 ## Upstreamable patches:
 Patch100: qtwebengine-add-missing-pipewire-headers.patch
+Patch101: qtwebengine-fix-build-against-gcc16.patch
 
 ## ppc64le port
 Patch200: qtwebengine-6.9-ppc64.patch
@@ -492,6 +493,7 @@ popd
 
 ## upstreamable patches
 %patch -P100 -p1 -b .add-missing-pipewire-headers
+%patch -P101 -p1 -b .fix-build-against-gcc16
 
 # ppc64le support
 %patch -P200 -p1
