@@ -88,7 +88,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.10.1
-Release: 5%{?dist}
+Release: 5.rv64%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -149,10 +149,14 @@ Patch201: qtwebengine-chromium-ppc64.patch
 # https://github.com/google/highway/commit/dcc0ca1cd4245ecff9e5ba50818e47d5e2ccf699
 Patch202: qtwebengine-chromium-ppc64-highway.patch
 
+## riscv64
+Patch300: riscv-sandbox.patch
+Patch301: riscv-v8.patch
+
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 # FIXME use/update qt6_qtwebengine_arches
 # 32-bit arches not supported (https://bugreports.qt.io/browse/QTBUG-102143)
-ExclusiveArch: aarch64 x86_64 ppc64le
+ExclusiveArch: aarch64 x86_64 ppc64le riscv64
 
 BuildRequires: cmake
 BuildRequires: ninja-build >= 1.7.2
@@ -509,6 +513,9 @@ pushd third_party/highway/src
 popd
 popd
 
+# riscv64 support
+%patch -P300 -p1
+%patch -P301 -p1
 
 # delete all "toolprefix = " lines from build/toolchain/linux/BUILD.gn, as we
 # never cross-compile in native Fedora RPMs, fixes ARM and aarch64 FTBFS
@@ -856,6 +863,9 @@ done
 %endif
 
 %changelog
+* Fri Jan 23 2026 Liu Yang <Yang.Liu.sn@gmail.com> - 6.10.1-5.rv64
+- Add riscv64 support.
+
 * Tue Jan 13 2026 Jan Grulich <jgrulich@redhat.com> - 6.10.1-5
 - Fix Quick popup window positioning under X11
 
