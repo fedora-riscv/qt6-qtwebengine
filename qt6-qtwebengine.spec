@@ -133,11 +133,6 @@ Patch5:   qtwebengine-chromium-141-glibc-2.42-SYS_SECCOMP.patch
 ## Upstream patches:
 # https://bugreports.qt.io/browse/QTBUG-129985
 Patch80:  qtwebengine-fix-arm-build.patch
-# Remove with Qt 6.10.2
-# https://codereview.qt-project.org/c/qt/qtwebengine/+/702597
-Patch81:  qtwebengine-move-gpu-info-logging-to-gpu-thread.patch
-# https://qt-project.atlassian.net/browse/QTBUG-142823
-Patch82:  qtwebengine-fix-quick-popup-window-positioning-under-x11.patch
 
 ## Upstreamable patches:
 Patch100: qtwebengine-add-missing-pipewire-headers.patch
@@ -493,8 +488,6 @@ popd
 
 ## upstream patches
 %patch -P80 -p1 -b .fix-arm-build
-%patch -P81 -p1 -b .move-gpu-info-logging-to-gpu-thread
-%patch -P82 -p1 -b .fix-quick-popup-window-positioning-under-x11
 
 ## upstreamable patches
 %patch -P100 -p1 -b .add-missing-pipewire-headers
