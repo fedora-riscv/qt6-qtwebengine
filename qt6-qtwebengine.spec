@@ -136,6 +136,7 @@ Patch80:  qtwebengine-fix-arm-build.patch
 
 ## Upstreamable patches:
 Patch101: qtwebengine-fix-build-against-gcc16.patch
+Patch102: qtwebengine-fix-delay-signature.patch
 
 ## ppc64le port
 Patch200: qtwebengine-6.9-ppc64.patch
@@ -490,6 +491,7 @@ popd
 
 ## upstreamable patches
 %patch -P101 -p1 -b .fix-build-against-gcc16
+%patch -P102 -p1 -b .fix-delay-signature
 
 # ppc64le support
 %patch -P200 -p1
