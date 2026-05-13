@@ -87,7 +87,7 @@
 
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
-Version: 6.11.0
+Version: 6.11.1
 Release: 1%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
@@ -844,6 +844,9 @@ done
 %endif
 
 %changelog
+* Wed May 13 2026 Jan Grulich <jgrulich@redhat.com> - 6.11.1-1
+- Update to 6.11.1
+
 * Wed Apr 15 2026 Jan Grulich <jgrulich@redhat.com> - 6.11.0-1
 - 6.11.0
 
