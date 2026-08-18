@@ -88,7 +88,7 @@
 Summary: Qt6 - QtWebEngine components
 Name:    qt6-qtwebengine
 Version: 6.11.1
-Release: 1%{?dist}
+Release: 1.rv64%{?dist}
 
 # See LICENSE.GPL LICENSE.LGPL LGPL_EXCEPTION.txt, for details
 # See also http://qt-project.org/doc/qt-5.0/qtdoc/licensing.html
@@ -145,6 +145,18 @@ Patch201: qtwebengine-chromium-ppc64.patch
 Patch202: qtwebengine-chromium-ppc64-highway.patch
 # disable musttail attribute for GCC build
 Patch203: qtwebengine-chromium-ppc64-skia-musttail.patch
+
+## riscv64
+# From https://build.opensuse.org/package/show/openSUSE:Factory:RISCV/qt6-webengine
+# at revision r37 (Andreas_Schwab, 2026-03-28), adapted to apply after the ppc64
+# patches; also carried by Fedora RISC-V (riscv-koji.fedoraproject.org)
+Patch220: suse-riscv-sandbox.patch
+# From Fedora RISC-V qt6-qtwebengine f44-riscv64 branch
+# (http://fedora.riscv.rocks:3000/rpms/qt6-qtwebengine): QtPdf builds V8 with
+# v8_enable_webassembly=false, which the riscv64 V8 backend does not compile with
+Patch221: riscv-enable-v8-webasm.patch
+# Extend Patch203's GCC musttail workaround to riscv64 (tail call production fails)
+Patch222: riscv64-skia-musttail.patch
 
 # handled by qt6-srpm-macros, which defines %%qt6_qtwebengine_arches
 ExclusiveArch: %{qt6_qtwebengine_arches}
@@ -499,6 +511,11 @@ popd
 %patch -P202 -p1
 %patch -P203 -p1
 
+# riscv64
+%patch -P220 -p1 -b .riscv64-sandbox
+%patch -P221 -p1 -b .riscv64-webasm
+%patch -P222 -p1 -b .riscv64-skia-musttail
+
 
 # delete all "toolprefix = " lines from build/toolchain/linux/BUILD.gn, as we
 # never cross-compile in native Fedora RPMs, fixes ARM and aarch64 FTBFS
@@ -846,6 +863,12 @@ done
 %endif
 
 %changelog
+* Tue Aug 18 2026 Liu Yang <yang.liu.sn@gmail.com> - 6.11.1-1.rv64
+- Enable 64-bit RISC-V architecture support
+- Add sandbox patch from openSUSE:Factory:RISCV adapted to apply after the ppc64le ones
+- Force enable WebAssembly for QtPdf (the riscv64 V8 backend does not build with it disabled)
+- Extend the skia musttail workaround to riscv64
+
 * Wed May 13 2026 Jan Grulich <jgrulich@redhat.com> - 6.11.1-1
 - Update to 6.11.1
 
